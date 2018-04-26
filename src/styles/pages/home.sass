@@ -1,55 +1,37 @@
-.about-block
-   position: relative
-   padding: 81px 0 150px
-   overflow: hidden
-   
-   &__title
-      margin-bottom: 30px
-      line-height: 47px
-      text-align: left
-   
-   &__text
-      max-width: 700px
-      p
-         &:not(:last-child)
-            margin-bottom: 12px
-            
-         strong
-            +f('gil-700')
-      
-   &__img-wrap
-      position: absolute
-      top: 54px
-      height: 400px
-      width: 500px
-      right: -55px
-   &__img
-      padding-top: 30.3%
-      position: absolute
-      top: 50px
-      right: -70px
-      width: 40.8%
-      background-repeat: no-repeat
-      background-size: contain
-      background-position: 50% 50%
-      
 .offers
+   position: relative
+   z-index: 1
+   margin-bottom: -37px
    &__container
       position: relative
       z-index: 1
-      padding-top: 30px
+      padding: 30px 0 7px
    
    &__block
+      position: relative
       max-width: 445px
-      min-height: 480px
-      padding: 50px
+      padding: 35px 42px 0
       background: #fff
       border: 7px solid #f1f1f1
+      border-bottom: 0
+      &::after
+         position: absolute
+         left: -7px
+         right: -7px
+         top: 100%
+         height: 35px
+         background: #fff
+         border: 7px solid #f1f1f1
+         border-top: 0
+         content: ''
+      
       
       &-title
+         max-width: 260px
          margin-bottom: 10px
          
       &-descr
+         margin-bottom: 10px
          p
             color: #272727
             &:not(:last-child)
@@ -57,22 +39,21 @@
                
       &-info
          display: flex
-         justify-content: space-between
-               
+         
       &-price
+         margin-right: 20px
          +f('gil-900', 25, 48)
          
       &-more
          min-width: 160px
    
    &__img
-      height: 475px
+      //height: 475px
       +coverdiv
       +cover
    
 .restaurant
    position: relative
-   margin-top: -30px
    padding: 105px 0 100px
    
    &__bg
@@ -97,7 +78,7 @@
          right: -300px
       
    &__card
-      padding: 30px 35px
+      padding: 40px 55px 25px 25px
       margin: 0 15px
       border-radius: 20px
       background: rgba(#fff, .66)
@@ -112,11 +93,13 @@
          display: flex
          flex-direction: column
          align-items: flex-start
+         &:nth-child(1)
+            flex: 0 0 256px
          &:nth-child(2)
-            flex: 0 0 336px
+            flex: 0 0 350px
    
       &-title
-         margin-bottom: 15px
+         margin-bottom: 20px
          color: #000
    
       &-link
@@ -137,7 +120,7 @@
             border-bottom: 1px solid rgba(#000, .5)
             +trs
          svg
-            margin-right: 10px
+            margin-right: 7px
             +trs
          
       &-btn
@@ -147,63 +130,75 @@
 .sport
    padding: 0 0 40px
    &__title
-      margin-bottom: 30px
+      margin-bottom: 50px
    
    &__slider
       .slider__btn_prev
-         left: 30px
+         left: 25px
       .slider__btn_next
-         right: 30px
+         right: 25px
       .slider__btn-arrow
          fill: $white
-         .no-touch &:hover
-            fill: $red
       
    &__item
       $parent: &
       position: relative
       width: 50%
-      //padding-top: 7.5%
       height: 527px
       color: #fff
       text-align: center
-      //.no-touch &:hover .sport__item-img
-      //   transform: scale(1.21)
-         
       &-inner
-         //position: absolute
-         //left: 0
-         //right: 0
-         display: flex
-         flex-direction: column
-         align-items: center
-         justify-content: center
-         height: 100%
-         max-width: 640px
-         padding: 0 15px
+         max-width: 480px
+         padding: 83px 15px 0
          margin: 0 auto
       
       &-img
          +coverdiv
          background: no-repeat 50% 100% / cover
-         //background: no-repeat center / cover
          z-index: -1
          +trs
          
       &-title
          max-width: 300px
-         margin-bottom: 35px
+         min-height: 84px
+         margin: 0 auto 30px
          font-size: 35px
          color: #fff
          text-transform: none
-         
+         &_width
+            max-width: 228px
       &-descr
-         margin-bottom: 50px
+         margin-bottom: 35px
+         min-height: 148px
       &-btn
          padding: 13px 29px 12px
          
+      &-decor
+         pointer-events: none
+         position: absolute
+         z-index: 1
+         left: 0
+         bottom: 4px
+         height: 8px
+         &_l
+            &::after
+               position: absolute
+               top: 0
+               left: 0
+               border-bottom: 12px solid #fff
+               border-right: 50vw solid transparent
+               content: ''
+         &_r
+            &::after
+               position: absolute
+               top: 0
+               left: 0
+               border-bottom: 12px solid #fff
+               border-left: 50vw solid transparent
+               content: ''
+         
 .excurs
-   padding: 40px 0
+   padding: 50px 0
    &__container
    
    &__inner
@@ -212,9 +207,9 @@
       
    &__title
       display: block
-      margin-bottom: 25px
-      
+      margin-bottom: 20px
    &__descr
+      
       p
          color: rgba(#33425b, .8)
          font-size: 15px
@@ -222,10 +217,16 @@
       
    &__item
       $parent: &
-      float: left
       position: relative
+      float: left
       margin: 0 15px 30px
       &:hover
+         .excurs__item-center::after
+            -webkit-clip-path: inset(0 0 0 0)
+            clip-path: inset(0 0 0 0)
+            opacity: 1
+            background: $yellow
+      
          .excurs__item-img
             transform: scale(1.03, 1.08)
          .excurs__item-img::after
@@ -251,13 +252,23 @@
          margin-top: -280px
          
       &-center
-         pointer-events: none
-         display: block
+         display: flex
+         flex-direction: column
+         justify-content: center
          height: 251px
-         padding: 30px 30px 0
+         padding: 0 30px
          border: 2px solid $yellow
          text-align: center
          overflow: hidden
+         &::after
+            +coverdiv
+            z-index: -1
+            -webkit-clip-path: inset(50% 50% 50% 50%)
+            clip-path: inset(50% 50% 50% 50%)
+            opacity: 0
+            transition: .3s ease-out
+            
+            content: ''
          
       &-img
          position: relative
@@ -285,11 +296,11 @@
          overflow: hidden
          justify-content: center
          #{$parent}_sm &
-            padding: 0 20px
+            padding: 0 23px
          #{$parent}_md &
-            padding: 0 40px
+            padding: 0 60px 0 50px
          #{$parent}_vert &
-            padding: 0 10px
+            padding: 0 22px
    
       &-title
          position: relative
@@ -297,6 +308,7 @@
          display: block
          margin-bottom: 15px
          color: $yellow
+         text-transform: none
          transform: translate3d(0, 70%, 0)
          opacity: 0
          transition: opacity 0.35s .1s, transform 0.35s .1s

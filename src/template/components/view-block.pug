@@ -1,7 +1,7 @@
 if viewBlock ? viewBlock : viewBlock = []
 
 //begin view-block
-+b.SECTION.view-block._environment(class= viewBlock.classMod ? viewBlock.classMod : '')
++b.SECTION.view-block(class= viewBlock.classMod ? viewBlock.classMod : '')
 	+e.container.container
 		+e.title.title-1.title-decor
 			span.title-decor__line.title-decor__line_l
@@ -17,8 +17,12 @@ if viewBlock ? viewBlock : viewBlock = []
 					+e.item-img
 						+e.IMG(src=`static/img/content/view-block_${item.img}.jpg` alt='image')
 					+e.item-content
-						+e.item-title
-							h5= item.title
+						if item.title
+							+e.item-title
+								h5= item.title
+						if item.date
+							+e.item-date
+								span= item.date
 						+e.item-descr
 							p= item.descr
 						+e.A.item-btn.btn(href='#!' class= item.btnClass)

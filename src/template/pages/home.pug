@@ -8,24 +8,7 @@ block main
 
 	include ../components/screen
 
-	//begin about-block
-	+b.SECTION.about-block
-		+e.container.container
-			+e.text
-				+e.title.title-1
-					h2 VILLACAMPARI - просторные виллы на берегу моря
-
-				+e.descr
-					p Виллы расположены в изумительном экологически чистом месте с потрясающим видом на море, рядом располагается множество пляжей, как в камерных небольших живописных бухтах, так и великолепные многокилометровые с песчаными отмелями, что идеально подходит для семейного и оздоровительного отдыха.
-					p
-						strong VILLA CAMPARI
-						= ' '
-						| - это не просто красивые и уютные виллы для отпуска вашей мечты: наш заботливый персонал сделает все возможное, чтобы ваше пребывание было максимально комфортным и разнообразным.
-					p А невероятные закаты, первая линия моря, живописные бухты и панорамные окна Вилл будто созданы для созерцания, любования и релакса.
-
-		+e.img-wrap
-			+e.img(style='background-image: url(static/img/other/map_img.jpg)')
-	//end about-block
+	include ../components/about-block
 
 	//begin offers
 	.offers.c-tabs
@@ -121,7 +104,7 @@ block main
 
 	//end restaurant
 
-	-viewBlock = {title: 'Окружение', descr: 'у нас есть на что посмотреть'}
+	-viewBlock = {classMod: '_environment', title: 'Окружение', descr: 'у нас есть на что посмотреть'}
 	-
 		viewList = [{
 		img: 1,
@@ -153,27 +136,38 @@ block main
 				sportList = [{
 				img: 1,
 				title: 'Велосипедные прогулки',
-				descr: 'Если вы не боитесь вспотеть, лучшим временем для поездок на горном велосипеде станут мягкие зимние месяцы с октября по май, когда температуры ниже, и остров представляет собой зеленый ковер из диких цветов и ароматных трав. Тем не менее, Гозо рад велосипедистам в любое время года'
+				descr: 'Если вы не боитесь вспотеть, лучшим временем для поездок на горном велосипеде станут мягкие зимние месяцы с октября по май, когда температуры ниже, и остров представляет собой зеленый ковер из диких цветов и ароматных трав. Тем не менее, Гозо рад велосипедистам в любое время года',
+				decorClass: '_l'
 				}, {
 				img: 2,
+				titleClass: '_width',
 				title: 'Sup серфинг',
-				descr: 'UP серфинг с веслом весьма условно можно назвать экстремальным видом спорта. Stand up paddle board (SUP доску) целесообразно использовать для катания по спокойной воде. UP серфинг с веслом весьма условно можно назвать экстремальным видом спорта. Stand up paddle board (SUP доску).'
+				descr: 'UP серфинг с веслом весьма условно можно назвать экстремальным видом спорта. Stand up paddle board (SUP доску) целесообразно использовать для катания по спокойной воде. UP серфинг с веслом весьма условно можно назвать экстремальным видом спорта. Stand up paddle board (SUP доску).',
+				decorClass: '_r'
 				}, {
 				img: 3,
 				title: 'Каякинг',
-				descr: 'Каякинг с веслом весьма условно можно назвать экстремальным видом спорта. Stand up paddle board (SUP доску) целесообразно использовать для катания по спокойной воде. UP серфинг с веслом весьма условно можно назвать экстремальным видом спорта. Stand up paddle board (SUP доску).'
+				descr: 'Каякинг с веслом весьма условно можно назвать экстремальным видом спорта. Stand up paddle board (SUP доску) целесообразно использовать для катания по спокойной воде. UP серфинг с веслом весьма условно можно назвать экстремальным видом спорта. Stand up paddle board (SUP доску).',
+				decorClass: '_l'
+				}, {
+				img: 2,
+				titleClass: '_width',
+				title: 'Sup серфинг',
+				descr: 'UP серфинг с веслом весьма условно можно назвать экстремальным видом спорта. Stand up paddle board (SUP доску) целесообразно использовать для катания по спокойной воде. UP серфинг с веслом весьма условно можно назвать экстремальным видом спорта. Stand up paddle board (SUP доску).',
+				decorClass: '_r'
 				}]
 
 			mixin sportItem(item)
 				+e.item
 					+e.item-img(style=`background-image: url(static/img/content/sport_${item.img}.jpg)`)
 					+e.item-inner
-						+e.item-title.title-2
+						+e.item-title(class= item.titleClass || '').title-2
 							h3= item.title
 						+e.item-descr
 							p= item.descr
 
 						+btn('_white', 'УЗНАТЬ ПОДРОБНОСТИ', true)
+					+e.item-decor(class= item.decorClass)
 
 			each item in sportList
 				+sportItem(item)
@@ -252,7 +246,25 @@ block main
 			-
 				imgList = [5, 4, 3, 2, 1]
 			for img in imgList
-				+e.img(style=`background-image: url(static/img/content/insta_${img}.jpg)`)
-
-
+				+e.A.img(href='#!' style=`background-image: url(static/img/content/insta_${img}.jpg)`)
 	//end insta
+
+	-viewBlock = {classMod: '_events', title: 'Последние события'}
+	-
+		viewList = [{
+		img: 1,
+		date: '22.03.2018',
+		descr: 'Двухэтажная просторная вилла со всеми удобствами, двумя спальнями с кондиционерами',
+		btnClass: '_yellow'
+		}, {
+		img: 2,
+		date: '22.03.2018',
+		descr: 'Одна из самых больших  панорамных Вилл, с которой открывается изумительный вид на бирюзовую гладь моря, Русскую бухту и заповедник Казантип.',
+		btnClass: '_yellow'
+		}, {
+		img: 3,
+		date: '22.03.2018',
+		descr: 'Двухэтажная просторная вилла со всеми удобствами, двумя спальнями с кондиционерами',
+		btnClass: '_yellow'
+		}]
+	include ../components/view-block

@@ -12,6 +12,14 @@
     <link rel="icon" href="static/favicon.png">
   </head>
   <body>
+    <!--begin preloader-->
+    <div class="preloader">
+      <div class="preloader__box preloader__box_top"></div>
+      <div class="preloader__box preloader__box_bot"></div>
+      <div class="preloader__box preloader__box_left"></div>
+      <div class="preloader__box preloader__box_right"></div>
+      <!--end preloader-->
+    </div>
     <!-- picture element HTML5 shiv-->
     <script>
       document.createElement('picture');
@@ -270,21 +278,24 @@
     <!--begin about-block-->
     <section class="about-block">
       <div class="about-block__container container">
-        <div class="about-block__text">
-          <div class="about-block__title title-1">
-            <h2>VILLACAMPARI - просторные виллы на берегу моря</h2>
-          </div>
-          <div class="about-block__descr">
-            <p>Виллы расположены в изумительном экологически чистом месте с потрясающим видом на море, рядом располагается множество пляжей, как в камерных небольших живописных бухтах, так и великолепные многокилометровые с песчаными отмелями, что идеально
-              подходит для семейного и оздоровительного отдыха.</p>
-            <p>
-              <strong>VILLA CAMPARI</strong> - это не просто красивые и уютные виллы для отпуска вашей мечты: наш заботливый персонал сделает все возможное, чтобы ваше пребывание было максимально комфортным и разнообразным.</p>
-            <p>А невероятные закаты, первая линия моря, живописные бухты и панорамные окна Вилл будто созданы для созерцания, любования и релакса.</p>
+        <div class="container">
+          <div class="about-block__text">
+            <div class="about-block__title title-1">
+              <h2>VILLACAMPARI - просторные виллы на берегу моря</h2>
+            </div>
+            <div class="about-block__descr">
+              <p>Виллы расположены в изумительном экологически чистом месте с потрясающим видом на море, рядом располагается множество пляжей, как в камерных небольших живописных бухтах, так и великолепные многокилометровые с песчаными отмелями, что идеально
+                подходит для семейного и оздоровительного отдыха.</p>
+              <p>
+                <strong>VILLA CAMPARI</strong> - это не просто красивые и уютные виллы для отпуска вашей мечты: наш заботливый персонал сделает все возможное, чтобы ваше пребывание было максимально комфортным и разнообразным.</p>
+              <p>А невероятные закаты, первая линия моря, живописные бухты и панорамные окна Вилл будто созданы для созерцания, любования и релакса.</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="about-block__img-wrap">
-        <div class="about-block__img" style="background-image: url(static/img/other/map_img.jpg)"></div>
+        <div class="about-block__img-wrap">
+          <div class="about-block__img" style="background-image: url(static/img/other/map_img.jpg)"></div>
+          <div class="about-block__img-mask"></div>
+        </div>
       </div>
     </section>
     <!--end about-block-->
@@ -536,11 +547,12 @@
               <span class="btn__line"></span>
             </a>
           </div>
+          <div class="sport__item-decor sport__item-decor_l"></div>
         </div>
         <div class="sport__item">
           <div class="sport__item-img" style="background-image: url(static/img/content/sport_2.jpg)"></div>
           <div class="sport__item-inner">
-            <div class="sport__item-title title-2">
+            <div class="sport__item-title sport__item-title_width title-2">
               <h3>Sup серфинг</h3>
             </div>
             <div class="sport__item-descr">
@@ -552,6 +564,7 @@
               <span class="btn__line"></span>
             </a>
           </div>
+          <div class="sport__item-decor sport__item-decor_r"></div>
         </div>
         <div class="sport__item">
           <div class="sport__item-img" style="background-image: url(static/img/content/sport_3.jpg)"></div>
@@ -568,6 +581,24 @@
               <span class="btn__line"></span>
             </a>
           </div>
+          <div class="sport__item-decor sport__item-decor_l"></div>
+        </div>
+        <div class="sport__item">
+          <div class="sport__item-img" style="background-image: url(static/img/content/sport_2.jpg)"></div>
+          <div class="sport__item-inner">
+            <div class="sport__item-title sport__item-title_width title-2">
+              <h3>Sup серфинг</h3>
+            </div>
+            <div class="sport__item-descr">
+              <p>UP серфинг с веслом весьма условно можно назвать экстремальным видом спорта. Stand up paddle board (SUP доску) целесообразно использовать для катания по спокойной воде. UP серфинг с веслом весьма условно можно назвать экстремальным видом
+                спорта. Stand up paddle board (SUP доску).</p>
+            </div>
+            <a class="sport__btn btn btn_white" href="#!">
+              <span class="btn__text">УЗНАТЬ ПОДРОБНОСТИ</span>
+              <span class="btn__line"></span>
+            </a>
+          </div>
+          <div class="sport__item-decor sport__item-decor_r"></div>
         </div>
       </div>
     </section>
@@ -668,16 +699,96 @@
         <a class="insta__img" href="#!" style="background-image: url(static/img/content/insta_4.jpg)"></a>
         <a class="insta__img" href="#!" style="background-image: url(static/img/content/insta_5.jpg)"></a>
         <a class="insta__img" href="#!" style="background-image: url(static/img/content/insta_6.jpg)"></a>
-        <div class="insta__img" style="background-image: url(static/img/content/insta_5.jpg)"></div>
-        <div class="insta__img" style="background-image: url(static/img/content/insta_4.jpg)"></div>
-        <div class="insta__img" style="background-image: url(static/img/content/insta_3.jpg)"></div>
-        <div class="insta__img" style="background-image: url(static/img/content/insta_2.jpg)"></div>
-        <div class="insta__img" style="background-image: url(static/img/content/insta_1.jpg)"></div>
+        <a class="insta__img" href="#!" style="background-image: url(static/img/content/insta_5.jpg)"></a>
+        <a class="insta__img" href="#!" style="background-image: url(static/img/content/insta_4.jpg)"></a>
+        <a class="insta__img" href="#!" style="background-image: url(static/img/content/insta_3.jpg)"></a>
+        <a class="insta__img" href="#!" style="background-image: url(static/img/content/insta_2.jpg)"></a>
+        <a class="insta__img" href="#!" style="background-image: url(static/img/content/insta_1.jpg)"></a>
       </div>
     </section>
     <!--end insta-->
+    <!--begin view-block-->
+    <section class="view-block view-block_events">
+      <div class="view-block__container container">
+        <div class="view-block__title title-1 title-decor">
+          <span class="title-decor__line title-decor__line_l"></span>
+          <h2>Последние события</h2>
+          <span class="title-decor__line title-decor__line_r"></span>
+        </div>
+        <div class="view-block__sub-title"></div>
+        <div class="view-block__inner">
+          <div class="view-block__item">
+            <div class="view-block__item-img">
+              <img src="static/img/content/view-block_1.jpg" alt="image" title="" />
+            </div>
+            <div class="view-block__item-content">
+              <div class="view-block__item-date">
+                <span>22.03.2018</span>
+              </div>
+              <div class="view-block__item-descr">
+                <p>Двухэтажная просторная вилла со всеми удобствами, двумя спальнями с кондиционерами</p>
+              </div>
+              <a class="view-block__item-btn btn btn_yellow" href="#!">
+                <span class="btn__text">подробнее</span>
+              </a>
+            </div>
+            <div class="view-block__item-square">
+              <div class="view-block__item-square-l"></div>
+              <div class="view-block__item-square-t"></div>
+              <div class="view-block__item-square-r"></div>
+              <div class="view-block__item-square-b"></div>
+            </div>
+          </div>
+          <div class="view-block__item">
+            <div class="view-block__item-img">
+              <img src="static/img/content/view-block_2.jpg" alt="image" title="" />
+            </div>
+            <div class="view-block__item-content">
+              <div class="view-block__item-date">
+                <span>22.03.2018</span>
+              </div>
+              <div class="view-block__item-descr">
+                <p>Одна из самых больших панорамных Вилл, с которой открывается изумительный вид на бирюзовую гладь моря, Русскую бухту и заповедник Казантип.</p>
+              </div>
+              <a class="view-block__item-btn btn btn_yellow" href="#!">
+                <span class="btn__text">подробнее</span>
+              </a>
+            </div>
+            <div class="view-block__item-square">
+              <div class="view-block__item-square-l"></div>
+              <div class="view-block__item-square-t"></div>
+              <div class="view-block__item-square-r"></div>
+              <div class="view-block__item-square-b"></div>
+            </div>
+          </div>
+          <div class="view-block__item">
+            <div class="view-block__item-img">
+              <img src="static/img/content/view-block_3.jpg" alt="image" title="" />
+            </div>
+            <div class="view-block__item-content">
+              <div class="view-block__item-date">
+                <span>22.03.2018</span>
+              </div>
+              <div class="view-block__item-descr">
+                <p>Двухэтажная просторная вилла со всеми удобствами, двумя спальнями с кондиционерами</p>
+              </div>
+              <a class="view-block__item-btn btn btn_yellow" href="#!">
+                <span class="btn__text">подробнее</span>
+              </a>
+            </div>
+            <div class="view-block__item-square">
+              <div class="view-block__item-square-l"></div>
+              <div class="view-block__item-square-t"></div>
+              <div class="view-block__item-square-r"></div>
+              <div class="view-block__item-square-b"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--end view-block-->
+    </section>
     <!--begin footer-->
-    <footer class="footer" data-anim="fade-y" data-anim-duration="1">
+    <footer class="footer" data-anim="fade-y" data-anim-duration="1" style="background-image: url(static/img/bg/footer_bg.jpg)">
       <div class="footer__container container"></div>
     </footer>
     <!--end footer-->

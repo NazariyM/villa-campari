@@ -1,0 +1,42 @@
+.preloader
+   pointer-events: none
+   position: fixed
+   top: 0
+   left: 0
+   right: 0
+   bottom: 0
+   z-index: 101
+   &__box
+      position: absolute
+      background: $white
+      background: $white url('../img/other/light-pattern.png') center center repeat
+      &_top
+         z-index: 1
+         width: 10px
+         height: 50%
+         left: 50%
+         margin-left: -5px
+         bottom: 50%
+         margin-bottom: 3px
+      &_bot
+         z-index: 1
+         width: 10px
+         height: 50%
+         left: 50%
+         margin-left: -5px
+         top: 50%
+         margin-top: 3px
+      &_left
+         z-index: 1
+         width: 50%
+         height: 100%
+         right: 50%
+         margin-right: 3px
+         top: 0
+      &_right
+         z-index: 1
+         width: 50%
+         height: 100%
+         left: 50%
+         margin-left: 3px
+         top: 0

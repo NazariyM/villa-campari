@@ -1,5 +1,6 @@
 import { TweenMax } from 'gsap';
 import { $header, $window, throttle, css, Resp } from '../modules/dev/_helpers';
+import { preloader } from './preloader'
 
 class Header {
   constructor() {
@@ -16,17 +17,14 @@ class Header {
     this.init();
   }
 
-  init() {
-    this.bindEvents();
+  async init () {
+    await preloader.wait();
+    await this.startAnim();
 
-    if (!Resp.isDesk) {
-      this.toggleNav();
-    }
+    this.bindEvents();
   }
 
   bindEvents() {
-    this.startAnim();
-    this.initFix();
 
     if (Resp.isMobiles) this.toggleDropDown();
   }
@@ -34,8 +32,9 @@ class Header {
   startAnim() {
     const $navLeft = this.$nav.find('li:lt(3)');
 
-    // const $navRight = this.$nav.find('li:gt(-4)');
     const $navRight = this.$nav.find('li').slice(-3);
+
+    // const $navRight = this.$nav.find('li:gt(-4)');
     // const $navRight = this.$nav.find('li:lt(6):not(:lt(3))');
 
     this.tl
@@ -46,22 +45,6 @@ class Header {
      .to(this.$linesL, 1, { width: '45.5%' }, 'nav')
      .to(this.$linesR, 1, { width: '45.5%' }, 'nav')
      .to(this.$logo, .5, { autoAlpha: 1, ease: RoughEase.ease.config({ template:  Power4.easeNone, strength: 4, points: 20, taper: 'none', randomize: true, clamp: false }) }, 'nav -=.3');
-  }
-
-  initFix() {
-    const toggleHeaderScroll = throttle(() => {
-      toggleHeader();
-    }, 0, this);
-
-    function toggleHeader() {
-      if (window.pageYOffset > 0) {
-        $header.addClass(css.fixed);
-      } else {
-        $header.removeClass(css.fixed);
-      }
-    }
-
-    window.addEventListener('scroll', toggleHeaderScroll);
   }
 
   toggleNav() {

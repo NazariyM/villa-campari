@@ -48,12 +48,12 @@ body
   justify-content: center
   &__line
     position: relative
-    height: 1px
+    height: 2px
     width: 124px
     background: $yellow
     &::after, &::before
       position: absolute
-      width: 1px
+      width: 2px
       height: 13px
       background: $yellow
       content: ''
@@ -61,7 +61,7 @@ body
       top: -6px
       transform: rotate(45deg)
     &::before
-      bottom: -6px
+      bottom: -5px
       transform: rotate(-45deg)
       
     &_l
@@ -183,3 +183,8 @@ body
     &_next
       right: 0
       
+::selection
+  background: $yellow
+  
+::-moz-selection
+  background: $yellow

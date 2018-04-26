@@ -1,0 +1,44 @@
+.about-block
+   padding: 81px 0 92px
+   overflow: hidden
+   
+   &__container
+      position: relative
+      max-width: 1630px
+      
+   &__text
+      position: relative
+      z-index: 1
+      max-width: 700px
+      
+   &__title
+      margin-bottom: 32px
+      line-height: 47px
+      text-align: left
+      
+   &__descr
+      p
+         &:first-child
+            margin-bottom: 13px
+         strong
+            +f('gil-700')
+   
+   &__img-wrap
+      position: absolute
+      top: -28px
+      right: -55px
+      width: 44.2%
+      padding-top: 30.23%
+   &__img
+      +coverdiv
+      +cover
+      
+      &-mask
+         +coverdiv
+         position: absolute
+         top: 0
+         right: 0
+         bottom: 0
+         left: -50px
+         transform: skewX(-25deg)
+         background: #fff

@@ -29511,6 +29511,8 @@ var _objectFitImages2 = _interopRequireDefault(_objectFitImages);
 
 __webpack_require__(336);
 
+__webpack_require__(350);
+
 __webpack_require__(337);
 
 __webpack_require__(338);
@@ -29856,6 +29858,8 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _preloader = __webpack_require__(350);
+
 var _gsap = __webpack_require__(47);
 
 var _SplitText = __webpack_require__(128);
@@ -29863,6 +29867,8 @@ var _SplitText = __webpack_require__(128);
 var _SplitText2 = _interopRequireDefault(_SplitText);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -29879,21 +29885,54 @@ var Screen = function () {
     this.decorY = this.container.querySelector('.screen__decor_y').children;
     this.tl = new TimelineMax();
 
-    this.init();
+    if (this.container) this.init();
   }
 
   _createClass(Screen, [{
     key: 'init',
-    value: function init() {
-      this.startAnim();
+    value: function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.prepareAnim();
+                _context.next = 3;
+                return _preloader.preloader.wait();
+
+              case 3:
+                _context.next = 5;
+                return this.startAnim();
+
+              case 5:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function init() {
+        return _ref.apply(this, arguments);
+      }
+
+      return init;
+    }()
+  }, {
+    key: 'prepareAnim',
+    value: function prepareAnim() {
+      this.splitTitle = new _SplitText2.default(this.title, { type: 'words, chars' });
+      var titleChars = this.splitTitle.chars;
+
+      this.tl.set(titleChars, { opacity: 0, scale: 0, y: 50, transformOrigin: '0% 50%' }).set(this.decorX, { x: '100%' }).set(this.decorY, { y: '100%' });
     }
   }, {
     key: 'startAnim',
     value: function startAnim() {
-      var splitTitle = new _SplitText2.default(this.title, { type: 'words, chars' });
-      var titleChars = splitTitle.chars;
 
-      this.tl.from(this.img, 1.2, { transformOrigin: '0% 50%', rotation: 6, height: 100 }).staggerFrom(titleChars, 0.8, { opacity: 0, scale: 0, y: 50, transformOrigin: '0% 50%', ease: Back.easeOut }, 0.03, '+=0').to(this.btn, .6, { x: 0, autoAlpha: 1, ease: Power0 }, '+.4').from(this.decorX, .5, { x: '100%' }, 2, 'decor').from(this.decorY, .5, { y: '100%', transformOrigin: '100% 100%' }, 2, 'decor');
+      var titleChars = this.splitTitle.chars;
+
+      this.tl.staggerTo(titleChars, 0.8, { opacity: 1, scale: 1, y: 0, transformOrigin: '0% 50%', ease: Back.easeOut }, 0.03, '+=0').to(this.btn, .6, { x: 0, autoAlpha: 1, ease: Power0 }, '+.4').to(this.decorX, .5, { x: '0%' }, 1, 'decor').to(this.decorY, .5, { y: '0%', transformOrigin: '100% 100%' }, 1, 'decor');
     }
   }]);
 
@@ -29926,7 +29965,11 @@ var _scrollAnim = __webpack_require__(93);
 
 var _scrollAnim2 = _interopRequireDefault(_scrollAnim);
 
+var _preloader = __webpack_require__(350);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -29938,20 +29981,74 @@ var AboutBlock = function () {
     this.title = this.block.querySelector('.about-block__title');
     this.descr = this.block.querySelector('.about-block__descr');
     this.img = this.block.querySelector('.about-block__img');
+    this.imgMask = this.block.querySelector('.about-block__img-mask');
     this.tl = new _gsap.TimelineMax();
 
-    this.init();
+    if (this.block) this.init();
   }
 
   _createClass(AboutBlock, [{
     key: 'init',
-    value: function init() {
-      this.textAnim();
-    }
+    value: function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+        var _this2 = this;
+
+        var _this;
+
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _this = this;
+
+
+                this.prepareAnim();
+
+                new _scrollAnim2.default({
+                  el: this.block,
+                  hook: .85,
+                  onEnter: function () {
+                    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+                      return regeneratorRuntime.wrap(function _callee$(_context) {
+                        while (1) {
+                          switch (_context.prev = _context.next) {
+                            case 0:
+                              _context.next = 2;
+                              return _this.startAnim();
+
+                            case 2:
+                            case 'end':
+                              return _context.stop();
+                          }
+                        }
+                      }, _callee, _this2);
+                    }));
+
+                    return function onEnter() {
+                      return _ref2.apply(this, arguments);
+                    };
+                  }()
+                });
+
+              case 3:
+              case 'end':
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function init() {
+        return _ref.apply(this, arguments);
+      }
+
+      return init;
+    }()
   }, {
-    key: 'textAnim',
-    value: function textAnim() {
-      var titleSplit = new _SplitText2.default(this.title, {
+    key: 'prepareAnim',
+    value: function prepareAnim() {
+      // title
+      this.titleSplit = new _SplitText2.default(this.title, {
         position: 'absolute',
         type: 'chars, lines'
       });
@@ -29961,20 +30058,19 @@ var AboutBlock = function () {
       var _iteratorError = undefined;
 
       try {
-        for (var _iterator = titleSplit.lines[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        for (var _iterator = this.titleSplit.lines[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
           var line = _step.value;
 
           var letters = line.querySelectorAll('div');
-          this.tl.staggerFromTo(letters, .5, {
+
+          this.tl.set(letters, {
             opacity: 0,
             transform: 'translateX(-40px) skew(-7deg)',
             filter: 'blur(2px)'
-          }, {
-            opacity: 1,
-            transform: 'translateX(0px) skew(0deg)',
-            filter: 'blur(0px)'
-          }, .02, .8);
+          });
         }
+
+        // descr
       } catch (err) {
         _didIteratorError = true;
         _iteratorError = err;
@@ -29991,24 +30087,64 @@ var AboutBlock = function () {
       }
 
       var descrPar = this.descr.querySelectorAll('p');
-
-      new _SplitText2.default(descrPar, {
+      this.descrSplit = new _SplitText2.default(descrPar, {
         type: 'lines'
       });
-
       var lines = this.descr.querySelectorAll('div');
 
-      this.tl.staggerFromTo(lines, .5, {
+      this.tl.set(lines, {
         opacity: 0,
         transform: 'translateX(-40px) skew(-7deg)',
         filter: 'blur(2px)'
-      }, {
+      });
+    }
+  }, {
+    key: 'startAnim',
+    value: function startAnim() {
+      var _this3 = this;
+
+      // title
+      var _iteratorNormalCompletion2 = true;
+      var _didIteratorError2 = false;
+      var _iteratorError2 = undefined;
+
+      try {
+        for (var _iterator2 = this.titleSplit.lines[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+          var line = _step2.value;
+
+          var letters = line.querySelectorAll('div');
+
+          this.tl.staggerTo(letters, .5, {
+            opacity: 1,
+            transform: 'translateX(0px) skew(0deg)',
+            filter: 'blur(0px)'
+          }, .02, .8);
+        }
+
+        // descr & img
+      } catch (err) {
+        _didIteratorError2 = true;
+        _iteratorError2 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion2 && _iterator2.return) {
+            _iterator2.return();
+          }
+        } finally {
+          if (_didIteratorError2) {
+            throw _iteratorError2;
+          }
+        }
+      }
+
+      var lines = this.descr.querySelectorAll('div');
+      this.tl.staggerTo(lines, .5, {
         opacity: 1,
         transform: 'translateX(0px) skew(0deg)',
         filter: 'blur(0px)'
-      }, .02, .8);
-
-      // this.tl.from(this.img, 1, { clip: 'rect(0px 200px 200px 200px)' });
+      }, .02, .8).add(function () {
+        _this3.descrSplit.revert();
+      }).to(this.imgMask, 1.2, { scaleX: 0, transformOrigin: '100% 100%' }, '-=.6');
     }
   }]);
 
@@ -32813,9 +32949,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -32833,12 +32967,12 @@ var ViewBlock = function () {
   function ViewBlock() {
     _classCallCheck(this, ViewBlock);
 
-    this.$block = $('.view-block');
-    this.$title = this.$block.find('.view-block__title');
-    this.$sutTitle = this.$block.find('.view-block__sub-title');
-    this.$item = this.$block.find('.view-block__item');
+    this.block = document.querySelector('.view-block');
+    this.title = this.block.querySelector('.view-block__title');
+    this.sutTitle = this.block.querySelector('.view-block__sub-title');
+    this.items = this.block.querySelectorAll('.view-block__item');
 
-    // if (this.$block.length) this.init();
+    if (this.block) this.init();
   }
 
   _createClass(ViewBlock, [{
@@ -32849,72 +32983,116 @@ var ViewBlock = function () {
   }, {
     key: 'startAnim',
     value: function startAnim() {
-      var bgColor = '#ffc446',
+      var tl = void 0,
+          bgColor = '#ffc446',
           easing = Power0.easeNone,
           duration = 0.3;
 
-      var tl = new _gsap.TimelineMax({
+      tl = new _gsap.TimelineMax({
         paused: true,
         yoyo: true
       });
 
-      this.itemSquareL = this.$item.find('.view-block__item-square-l');
-      this.itemSquareR = this.$item.find('.view-block__item-square-r');
-      this.itemSquareT = this.$item.find('.view-block__item-square-t');
-      this.itemSquareB = this.$item.find('.view-block__item-square-b');
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
 
-      tl.fromTo(this.itemSquareT, duration, {
-        width: 0,
-        background: bgColor,
-        immediateRender: false,
-        autoRound: false,
-        ease: easing
-      }, {
-        width: '100%',
-        background: bgColor
-      });
+      try {
+        for (var _iterator = this.items.entries()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var handler = function handler(event) {
 
-      tl.fromTo(this.itemSquareR, duration, {
-        height: 0,
-        background: bgColor,
-        immediateRender: false,
-        autoRound: false,
-        ease: easing
-      }, {
-        height: '100%',
-        background: bgColor
-      });
+            if (event.type === 'mouseover') {
+              // event.target.style.background = 'red';
 
-      tl.fromTo(this.itemSquareB, duration, {
-        width: 0,
-        background: '#000',
-        immediateRender: false,
-        autoRound: false,
-        ease: easing
-      }, {
-        width: '100%',
-        background: bgColor
-      });
+              tl.play();
+            }
 
-      tl.fromTo(this.itemSquareL, duration, {
-        height: 0,
-        background: bgColor,
-        immediateRender: false,
-        autoRound: false,
-        ease: easing
-      }, {
-        height: '100%',
-        background: bgColor
-      });
+            if (event.type === 'mouseout') {
+              // event.target.style.background = '';
+              tl.reverse();
+            }
+          };
 
-      tl.progress(1).progress(0).play();
+          var _step$value = _slicedToArray(_step.value, 2),
+              index = _step$value[0],
+              item = _step$value[1];
+
+          this.itemSquareL = item.querySelector('.view-block__item-square-l');
+          this.itemSquareR = item.querySelector('.view-block__item-square-r');
+          this.itemSquareT = item.querySelector('.view-block__item-square-t');
+          this.itemSquareB = item.querySelector('.view-block__item-square-b');
+
+          item.onmouseover = item.onmouseout = handler;
+
+          tl.fromTo(this.itemSquareT, duration, {
+            width: 0,
+            background: bgColor,
+            immediateRender: false,
+            autoRound: false,
+            ease: easing
+          }, {
+            width: '100%',
+            background: bgColor
+          });
+
+          tl.fromTo(this.itemSquareR, duration, {
+            height: 0,
+            background: bgColor,
+            immediateRender: false,
+            autoRound: false,
+            ease: easing
+          }, {
+            height: '100%',
+            background: bgColor
+          });
+
+          tl.fromTo(this.itemSquareB, duration, {
+            width: 0,
+            background: '#000',
+            immediateRender: false,
+            autoRound: false,
+            ease: easing
+          }, {
+            width: '100%',
+            background: bgColor
+          });
+
+          tl.fromTo(this.itemSquareL, duration, {
+            height: 0,
+            background: bgColor,
+            immediateRender: false,
+            autoRound: false,
+            ease: easing
+          }, {
+            height: '100%',
+            background: bgColor
+          });
+
+          // tl
+          //   .progress(1).progress(0);
+          //   // .play();
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
     }
   }]);
 
   return ViewBlock;
 }();
 
-exports.default = new ViewBlock();
+// export default new ViewBlock();
 
 /***/ }),
 /* 341 */
@@ -32933,6 +33111,10 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _gsap = __webpack_require__(47);
 
 var _helpers = __webpack_require__(31);
+
+var _preloader = __webpack_require__(350);
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -32955,18 +33137,40 @@ var Header = function () {
 
   _createClass(Header, [{
     key: 'init',
-    value: function init() {
-      this.bindEvents();
+    value: function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _preloader.preloader.wait();
 
-      if (!_helpers.Resp.isDesk) {
-        this.toggleNav();
+              case 2:
+                _context.next = 4;
+                return this.startAnim();
+
+              case 4:
+
+                this.bindEvents();
+
+              case 5:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function init() {
+        return _ref.apply(this, arguments);
       }
-    }
+
+      return init;
+    }()
   }, {
     key: 'bindEvents',
     value: function bindEvents() {
-      this.startAnim();
-      this.initFix();
 
       if (_helpers.Resp.isMobiles) this.toggleDropDown();
     }
@@ -32975,28 +33179,12 @@ var Header = function () {
     value: function startAnim() {
       var $navLeft = this.$nav.find('li:lt(3)');
 
-      // const $navRight = this.$nav.find('li:gt(-4)');
       var $navRight = this.$nav.find('li').slice(-3);
+
+      // const $navRight = this.$nav.find('li:gt(-4)');
       // const $navRight = this.$nav.find('li:lt(6):not(:lt(3))');
 
       this.tl.to(this.$contactCol1, .5, { x: 0, autoAlpha: 1 }, 'contact').to(this.$contactCol2, .5, { x: 0, autoAlpha: 1 }, 'contact').staggerTo($navLeft, .5, { x: 0, autoAlpha: 1 }, .2, 'nav').staggerTo($navRight, .5, { x: 0, autoAlpha: 1 }, .2, 'nav').to(this.$linesL, 1, { width: '45.5%' }, 'nav').to(this.$linesR, 1, { width: '45.5%' }, 'nav').to(this.$logo, .5, { autoAlpha: 1, ease: RoughEase.ease.config({ template: Power4.easeNone, strength: 4, points: 20, taper: 'none', randomize: true, clamp: false }) }, 'nav -=.3');
-    }
-  }, {
-    key: 'initFix',
-    value: function initFix() {
-      var toggleHeaderScroll = (0, _helpers.throttle)(function () {
-        toggleHeader();
-      }, 0, this);
-
-      function toggleHeader() {
-        if (window.pageYOffset > 0) {
-          _helpers.$header.addClass(_helpers.css.fixed);
-        } else {
-          _helpers.$header.removeClass(_helpers.css.fixed);
-        }
-      }
-
-      window.addEventListener('scroll', toggleHeaderScroll);
     }
   }, {
     key: 'toggleNav',
@@ -37188,6 +37376,107 @@ var Home = function () {
 }();
 
 exports.default = Home;
+
+/***/ }),
+/* 350 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.preloader = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _helpers = __webpack_require__(31);
+
+var _gsap = __webpack_require__(47);
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Preloader = function () {
+  function Preloader() {
+    _classCallCheck(this, Preloader);
+
+    this.$block = $('.preloader');
+    this.$blockTop = this.$block.find('.preloader__box_top');
+    this.$blockBot = this.$block.find('.preloader__box_bot');
+    this.$blockLeft = this.$block.find('.preloader__box_left');
+    this.$blockRight = this.$block.find('.preloader__box_right');
+
+    this.init();
+  }
+
+  _createClass(Preloader, [{
+    key: 'init',
+    value: function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.animate();
+
+              case 1:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function init() {
+        return _ref.apply(this, arguments);
+      }
+
+      return init;
+    }()
+  }, {
+    key: 'wait',
+    value: function wait() {
+      return this.resolve;
+    }
+  }, {
+    key: 'animate',
+    value: function animate() {
+      var _this = this;
+
+      this.resolve = new Promise(function (resolve) {
+
+        var tl = new _gsap.TimelineMax({
+          onComplete: function onComplete() {
+            resolve();
+          }
+        });
+
+        tl.to(_this.$blockTop, 0.75, {
+          y: '-100%',
+          ease: Power4.easeIn
+        }, 0).to(_this.$blockBot, 0.75, {
+          y: '100%',
+          ease: Power4.easeIn
+        }, 0).addLabel('verticalEnd').to(_this.$blockLeft, 1, {
+          x: '-100%',
+          ease: Power4.easeInOut
+        }, 'verticalEnd').to(_this.$blockRight, 1, {
+          x: '100%',
+          ease: Power4.easeInOut
+        }, 'verticalEnd').set(_this.$block, { css: {
+            display: 'none'
+          } });
+      });
+    }
+  }]);
+
+  return Preloader;
+}();
+
+var preloader = exports.preloader = new Preloader();
 
 /***/ })
 /******/ ]);

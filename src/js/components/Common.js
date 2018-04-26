@@ -2,6 +2,7 @@ import objectFitImages from 'object-fit-images';
 // import fancybox from '@fancyapps/fancybox';
 import './NoTouch';
 
+import './preloader';
 import '../pages/sections/Screen';
 import '../pages/sections/AboutBlock';
 import '../pages/sections/ViewBlock';
