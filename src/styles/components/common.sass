@@ -1,0 +1,185 @@
+// basic styles
+body
+  min-width: 320px
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  +f('gil-400', 16, 25)
+  color: $color1
+  &.is-locked
+    overflow: hidden
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    height: 100%
+    
+.container
+  position: relative
+  max-width: 1140px
+  padding: 0 15px
+  margin: 0 auto
+  
+.link-decor
+  span
+    color: #dc3531
+    border-bottom: 1px solid rgba(#dc3531, .5)
+    +trs
+  .no-touch &:hover span
+    border-bottom-color: #dc3531
+    
+.title-1
+  +f('gil-900', 45, 35)
+  text-align: center
+  text-transform: none
+  color: #1f2032
+  span
+    +f('gil-600')
+  
+.title-2
+  +f('yes', 30)
+  line-height: 1.2
+  color: #1f2032
+  text-transform: uppercase
+  
+.title-decor
+  position: relative
+  display: flex
+  align-items: center
+  justify-content: center
+  &__line
+    position: relative
+    height: 1px
+    width: 124px
+    background: $yellow
+    &::after, &::before
+      position: absolute
+      width: 1px
+      height: 13px
+      background: $yellow
+      content: ''
+    &::after
+      top: -6px
+      transform: rotate(45deg)
+    &::before
+      bottom: -6px
+      transform: rotate(-45deg)
+      
+    &_l
+      margin-right: 15px
+      &::after, &::before
+        left: 0
+    &_r
+      margin-left: 15px
+      &::after, &::before
+        right: 0
+.btn
+  $parent: &
+  position: relative
+  display: inline-block
+  padding: 13px 26px 12px
+  min-width: 170px
+  text-align: center
+  outline: 0
+  cursor: pointer
+  +f('gil-400', 14, 21, 150)
+  color: $black
+  text-transform: uppercase
+  border-radius: 23px
+  transition: .3s ease
+  .no-touch &:hover #{$parent}__line
+    transform: translateX(0)
+    opacity: 1
+    
+  &_white
+    background: #fff
+    font-size: 14px
+    color: #1f2032
+    letter-spacing: 0.125em
+    .no-touch &:hover
+      background: #f1bc6f
+  
+  &_red
+    color: #fff
+    background: #e4181b
+    .no-touch &:hover
+      background: darken(#e4181b, 6)
+  &_yellow
+    background: $yellow
+    transition: .3s ease-in-out
+    .no-touch &:hover
+      background: darken($yellow, 10)
+      #{$parent}__text
+        background: darken($yellow, 10)
+    
+  &__text
+    position: relative
+    z-index: 2
+    transition: .3s ease-in-out
+    #{$parent}_yellow &
+      background: $yellow
+    
+  &__line
+    pointer-events: none
+    position: absolute
+    top: 50%
+    left: calc(100% - 14px)
+    margin-top: -1px
+    width: 72px
+    height: 2px
+    background: #fff
+    z-index: 1
+    transform: translateX(-100%)
+    transform-origin: 0 0
+    transition: .3s ease
+    opacity: 0
+    #{$parent}_white &
+      background: #f1bc6f
+      &::after
+        border-color: #f1bc6f
+        
+    &::after
+      top: 50%
+      right: -14px
+      margin-top: -7px
+      width: 14px
+      height: 14px
+      position: absolute
+      border: 2px solid #fff
+      border-radius: 50%
+      box-shadow: 0 0 1px 0 #fff
+      z-index: 1
+      content: ''
+    
+// sliders
+.slider
+  display: none
+  &.slick-initialized
+    display: block
+    
+  &__btn
+    position: absolute
+    top: 50%
+    z-index: 1
+    margin-top: -8px
+    outline: 0
+    border: 0
+    padding: 0
+    .no-touch &:hover svg
+      fill: $black
+    &.slick-disabled
+      svg
+        fill: gray
+      .no-touch &:hover svg
+        fill: gray
+      
+    svg
+      width: 113px
+      height: 16px
+      fill: $red
+      +trs
+    &_prev
+      left: 0
+      transform: scaleX(-1)
+    &_next
+      right: 0
+      

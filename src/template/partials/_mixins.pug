@@ -1,0 +1,11 @@
+//- SVG (include from sprite)
+mixin i(icon, className)
+	svg(class = `icon-${icon} ${className || ''}`)
+		use(xmlns:xlink="http://www.w3.org/1999/xlink", xlink:href=`#icon-${icon}`)
+
+// btn
+mixin btn(className, text, line)
+	+e.A.btn.btn(class= className || '' href='#!')
+		span.btn__text= text
+		if line === true
+			span.btn__line

@@ -1,0 +1,27 @@
+.socials
+  &__links
+    display: flex
+    align-items: center
+    justify-content: center
+    font-size: 0
+    a
+      display: inline-flex
+      align-items: center
+      justify-content: center
+      line-height: 1
+      .no-touch &:hover .icon
+        fill: $color1
+        
+      &:not(:last-child)
+        margin-right: 10px
+        
+      .icon
+        fill: #fff
+        transition: .7s ease
+        
+        &-vk
+          width: 20px
+          height: 14px
+        &-inst
+          width: 18px
+          height: 20px

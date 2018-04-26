@@ -1,0 +1,361 @@
+.about-block
+   position: relative
+   padding: 81px 0 150px
+   overflow: hidden
+   
+   &__title
+      margin-bottom: 30px
+      line-height: 47px
+      text-align: left
+   
+   &__text
+      max-width: 700px
+      p
+         &:not(:last-child)
+            margin-bottom: 12px
+            
+         strong
+            +f('gil-700')
+      
+   &__img-wrap
+      position: absolute
+      top: 54px
+      height: 400px
+      width: 500px
+      right: -55px
+   &__img
+      padding-top: 30.3%
+      position: absolute
+      top: 50px
+      right: -70px
+      width: 40.8%
+      background-repeat: no-repeat
+      background-size: contain
+      background-position: 50% 50%
+      
+.offers
+   &__container
+      position: relative
+      z-index: 1
+      padding-top: 30px
+   
+   &__block
+      max-width: 445px
+      min-height: 480px
+      padding: 50px
+      background: #fff
+      border: 7px solid #f1f1f1
+      
+      &-title
+         margin-bottom: 10px
+         
+      &-descr
+         p
+            color: #272727
+            &:not(:last-child)
+               margin-bottom: 10px
+               
+      &-info
+         display: flex
+         justify-content: space-between
+               
+      &-price
+         +f('gil-900', 25, 48)
+         
+      &-more
+         min-width: 160px
+   
+   &__img
+      height: 475px
+      +coverdiv
+      +cover
+   
+.restaurant
+   position: relative
+   margin-top: -30px
+   padding: 105px 0 100px
+   
+   &__bg
+      +coverdiv
+      +cover
+      opacity: .7
+      z-index: -1
+   
+   &__title
+      margin-bottom: 30px
+      color: #000
+      
+   &__container
+      position: relative
+      z-index: 1
+      max-width: 720px
+   
+   &__slider
+      .slider__btn_prev
+         left: -300px
+      .slider__btn_next
+         right: -300px
+      
+   &__card
+      padding: 30px 35px
+      margin: 0 15px
+      border-radius: 20px
+      background: rgba(#fff, .66)
+      color: #000
+      
+      &-inner
+         display: flex
+         margin: 0 -10px
+         
+      &-col
+         padding: 0 10px
+         display: flex
+         flex-direction: column
+         align-items: flex-start
+         &:nth-child(2)
+            flex: 0 0 336px
+   
+      &-title
+         margin-bottom: 15px
+         color: #000
+   
+      &-link
+         display: flex
+         align-items: center
+         margin-bottom: 20px
+         +f('gil-700', 12, 14, 100)
+         text-transform: uppercase
+         .no-touch &:hover
+            svg
+               fill: $red
+            span
+               color: $red
+               border-bottom-color: $red
+               
+         span
+            color: #000
+            border-bottom: 1px solid rgba(#000, .5)
+            +trs
+         svg
+            margin-right: 10px
+            +trs
+         
+      &-btn
+         min-width: 160px
+         margin-top: auto
+         
+.sport
+   padding: 0 0 40px
+   &__title
+      margin-bottom: 30px
+   
+   &__slider
+      .slider__btn_prev
+         left: 30px
+      .slider__btn_next
+         right: 30px
+      .slider__btn-arrow
+         fill: $white
+         .no-touch &:hover
+            fill: $red
+      
+   &__item
+      $parent: &
+      position: relative
+      width: 50%
+      //padding-top: 7.5%
+      height: 527px
+      color: #fff
+      text-align: center
+      //.no-touch &:hover .sport__item-img
+      //   transform: scale(1.21)
+         
+      &-inner
+         //position: absolute
+         //left: 0
+         //right: 0
+         display: flex
+         flex-direction: column
+         align-items: center
+         justify-content: center
+         height: 100%
+         max-width: 640px
+         padding: 0 15px
+         margin: 0 auto
+      
+      &-img
+         +coverdiv
+         background: no-repeat 50% 100% / cover
+         //background: no-repeat center / cover
+         z-index: -1
+         +trs
+         
+      &-title
+         max-width: 300px
+         margin-bottom: 35px
+         font-size: 35px
+         color: #fff
+         text-transform: none
+         
+      &-descr
+         margin-bottom: 50px
+      &-btn
+         padding: 13px 29px 12px
+         
+.excurs
+   padding: 40px 0
+   &__container
+   
+   &__inner
+      +clr
+      margin: 0 -15px
+      
+   &__title
+      display: block
+      margin-bottom: 25px
+      
+   &__descr
+      p
+         color: rgba(#33425b, .8)
+         font-size: 15px
+         line-height: 22px
+      
+   &__item
+      $parent: &
+      float: left
+      position: relative
+      margin: 0 15px 30px
+      &:hover
+         .excurs__item-img
+            transform: scale(1.03, 1.08)
+         .excurs__item-img::after
+            opacity: 1
+            transform: translate3d(0, 0, 0)
+         .excurs__item-title,
+         .excurs__item-descr
+            opacity: 1
+            transform: translate3d(0, 0, 0)
+            
+      &_sm
+         max-width: 380px
+         width: calc(33.33333% - 30px)
+         
+      &_md
+         max-width: 760px
+         width: calc(66.66667% - 30px)
+         
+      &_vert
+         width: calc(33.33333% - 30px)
+         
+      &_horiz
+         margin-top: -280px
+         
+      &-center
+         pointer-events: none
+         display: block
+         height: 251px
+         padding: 30px 30px 0
+         border: 2px solid $yellow
+         text-align: center
+         overflow: hidden
+         
+      &-img
+         position: relative
+         display: block
+         height: 251px
+         overflow: hidden
+         transition: transform .35s
+         +cover
+         #{$parent}_vert &
+            height: 531px
+         &::after
+            +coverdiv
+            background-image: linear-gradient(to bottom, rgba(15, 14, 14, 0.35) 30%, #0e0e0e 100%)
+            transform: translate3d(0, 50%, 0)
+            opacity: 0
+            +trs
+            content: ''
+            transition: opacity 0.25s, transform 0.25s
+            pointer-events: none
+   
+      &-content
+         display: flex
+         flex-direction: column
+         +coverdiv
+         overflow: hidden
+         justify-content: center
+         #{$parent}_sm &
+            padding: 0 20px
+         #{$parent}_md &
+            padding: 0 40px
+         #{$parent}_vert &
+            padding: 0 10px
+   
+      &-title
+         position: relative
+         z-index: 1
+         display: block
+         margin-bottom: 15px
+         color: $yellow
+         transform: translate3d(0, 70%, 0)
+         opacity: 0
+         transition: opacity 0.35s .1s, transform 0.35s .1s
+   
+      &-descr
+         display: block
+         position: relative
+         z-index: 1
+         transform: translate3d(0, 70%, 0)
+         opacity: 0
+         transition: opacity 0.35s .1s, transform 0.35s .1s
+         p
+            color: #fff
+            
+.insta
+   
+   &__container
+      margin: 0 auto 40px
+   
+   &__inner
+      display: flex
+      flex-wrap: wrap
+      justify-content: center
+      max-width: 1700px
+      margin: 0 auto
+      padding: 50px 0
+      overflow: hidden
+      
+   &__img
+      position: relative
+      flex: 0 0 (100% / 6)
+      +ratio(300, 300)
+      +cover
+      overflow-x: hidden
+      transition: all 300ms cubic-bezier(0.165, 0.84, 0.44, 1)
+      +gpu
+      .no-touch &:hover
+         transform: scale(1.15)
+         z-index: 1
+         
+      &:nth-child(6n)
+         .no-touch &:hover
+            transform: translateX(-7.5%) scale(1.15)
+            
+      &:nth-child(6n + 1)
+         .no-touch &:hover
+            transform: translateX(7.5%) scale(1.15)
+      
+      &_link
+         background: #464646
+         .no-touch &:hover
+            background: $white
+            svg
+               fill: $yellow
+      
+      svg
+         position: absolute
+         top: 0
+         left: 0
+         height: 100%
+         padding: 30%
+         fill: $white

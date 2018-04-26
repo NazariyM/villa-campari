@@ -1,0 +1,43 @@
+.c-tabs
+	&__tabs-nav
+		position: relative
+		display: flex
+		z-index: 1
+		margin-bottom: 30px
+		
+	&__tabs-for
+		//height: 475px!important
+		//padding-top: 30px
+		position: relative
+	&__tabs-el
+		position: relative
+		min-width: 176px
+		padding: 16px 27px 15px
+		+f('yes', 20, 27, 100)
+		text-transform: uppercase
+		text-align: center
+		white-space: nowrap
+		cursor: pointer
+		line-height: 1
+		border-radius: 28px
+		border: 2px solid #e4181b
+		background-color: #fff
+		+trs
+		&.is-active
+			pointer-events: none
+			background-color: #ffc446
+			border-color: transparent
+		&.is-disabled
+			pointer-events: none
+			opacity: 0.5
+			background-color: $white
+		.no-touch &:hover
+			box-shadow: inset 0 0 15px darken(#e4181b, 15)
+		&:not(:last-child)
+			margin-right: 10px
+	
+	&__tab
+		display: none
+		
+		&:first-child
+			display: block

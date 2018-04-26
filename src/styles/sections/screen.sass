@@ -1,0 +1,59 @@
+.screen
+   position: relative
+   height: 100vh
+   &__container
+      position: relative
+      z-index: 2
+      display: flex
+      flex-direction: column
+      justify-content: center
+      height: 100%
+   
+   &__text
+      position: relative
+   
+   &__title
+      max-width: 740px
+      margin-bottom: 20px
+      text-align: left
+      font-size: 60px
+      line-height: 65px
+      color: #fff
+   
+   &__img
+      +coverdiv
+      z-index: 1
+      +cover
+   //&-wrap
+   //   height: 100%
+   //   width: 100%
+   //   position: absolute
+   //   top: 0
+   //   left: 0
+   //   z-index: 3
+   //   background: #000
+   
+   &__btn
+      opacity: 0
+      transform: translateX(-50px)
+   &__decor
+      position: absolute
+      overflow: hidden
+      &_x
+         top: 31px
+         right: calc(100% + 12px)
+         width: 43px
+         height: 10px
+         .screen__decor-img
+            background-image: url(../img/other/yellow-decor_sm.png)
+      &_y
+         left: 23px
+         top: calc(100% - 45px)
+         width: 8px
+         height: 119px
+         .screen__decor-img
+            background-image: url(../img/other/yellow-decor_md.png)
+         
+      &-img
+         +coverdiv
+         +cover
