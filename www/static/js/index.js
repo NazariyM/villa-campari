@@ -11340,7 +11340,11 @@ var Preloader = function () {
               case 0:
                 this.animate();
 
-              case 1:
+                _helpers.$window.on('beforeunload', function () {
+                  _helpers.$scrolledElements.scrollTop(0);
+                });
+
+              case 2:
               case 'end':
                 return _context.stop();
             }

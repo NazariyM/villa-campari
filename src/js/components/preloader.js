@@ -14,6 +14,10 @@ class Preloader {
 
   async init() {
     this.animate();
+
+    $window.on('beforeunload', () => {
+      $scrolledElements.scrollTop(0);
+    });
   }
 
   wait() {
