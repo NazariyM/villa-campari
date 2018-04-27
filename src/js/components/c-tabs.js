@@ -1,16 +1,30 @@
-import { TweenMax, CSSPlugin } from 'gsap';
-import { css, Resp } from '../modules/dev/_helpers';
+import { TimelineMax } from 'gsap'
+import { css } from '../modules/dev/_helpers';
+import ScrollAnim from '../modules/dev/animation/scrollAnim'
 
 class CTabs {
   constructor(el) {
+    this.$block = $('.c-tabs');
     this.$tabNav = el.find('.c-tabs__tabs-nav').find('.c-tabs__tabs-el');
     this.$tabItemContainer = el.find('.c-tabs__tabs-for');
     this.$tabItem = this.$tabItemContainer.find('.c-tabs__tab');
-    // this.$img = this.$tabItemContainer.find('.c-tabs__img');
+    this.$img = this.$tabItemContainer.find('.c-tabs__img');
+    this.$offersBlock = this.$block.find('.offers__block');
+    this.$offersBlockItems = this.$offersBlock.children();
   }
 
   init() {
+    const _this = this;
+
     this.bindEvents();
+
+    new ScrollAnim({
+      el: this.$block[0],
+      hook: .85,
+      onEnter: async () => {
+        await _this.startAnim();
+      }
+    });
   }
 
   bindEvents() {
@@ -59,6 +73,14 @@ class CTabs {
         $(this.target).hide();
         TweenMax.set($nextTab, { autoAlpha: 1 });
         $nextTab.show();
+        TweenMax.staggerFromTo(_this.$offersBlockItems, speed, {
+          autoAlpha: 0,
+          y: 50
+        }, {
+          autoAlpha: 1,
+          y: 0
+        }, speed / 5);
+
         TweenMax.staggerFromTo($nextTab.children(), speed, {
           autoAlpha: 0,
           y: 50
@@ -70,6 +92,17 @@ class CTabs {
         TweenMax.from(_this.$tabItemContainer, speed, { height: currentHeight });
       }
     });
+  }
+
+  startAnim() {
+    const tl = new TimelineMax();
+
+    tl
+      .staggerTo(this.$tabNav, .4, { autoAlpha: 1, y: 0 }, .1)
+      .to(this.$img, 1, { width: '100%' })
+      .to(this.$offersBlock, .6, { y: 0, autoAlpha: 1 })
+      .staggerTo(this.$offersBlockItems, .6, { y: 0, autoAlpha: 1 });
+
   }
 }
 

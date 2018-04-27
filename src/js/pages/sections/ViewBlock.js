@@ -2,113 +2,41 @@ import { TimelineMax } from 'gsap';
 import ScrollAnim from '../../modules/dev/animation/scrollAnim';
 
 class ViewBlock {
-  constructor () {
-    this.block = document.querySelector('.view-block');
-    this.title = this.block.querySelector('.view-block__title');
-    this.sutTitle = this.block.querySelector('.view-block__sub-title');
-    this.items = this.block.querySelectorAll('.view-block__item');
+  constructor (el) {
+    this.$block = $(el);
+    this.$sutTitle = this.$block.find('.view-block__sub-title');
+    this.$items = this.$block.find('.view-block__item');
+    this.tl = new TimelineMax();
 
-    if (this.block) this.init();
+    if (this.$block.length) this.init();
   }
 
   init() {
-    this.startAnim();
+    const _this = this;
+
+    new ScrollAnim({
+      el: this.$block.get(0),
+      hook: .85,
+      onEnter: () => {
+        _this.startAnim();
+      }
+    });
   }
 
   startAnim() {
-    let tl,
-      bgColor = '#ffc446',
-      easing = Power0.easeNone,
-      duration = 0.3;
+    this.tl
+      .to(this.$sutTitle, .7, { autoAlpha: 1, y: 0 })
+      .add(() => {
+        const img = this.$items.find('.view-block__item-img');
+        const contentItems = this.$items.find('.view-block__item-content').children().not('.view-block__item-btn');
 
-    tl = new TimelineMax({
-      paused: true,
-      yoyo: true
-    });
-
-    for (const [index, item] of this.items.entries()) {
-      this.itemSquareL = item.querySelector('.view-block__item-square-l');
-      this.itemSquareR = item.querySelector('.view-block__item-square-r');
-      this.itemSquareT = item.querySelector('.view-block__item-square-t');
-      this.itemSquareB = item.querySelector('.view-block__item-square-b');
-
-      item.onmouseover = item.onmouseout = handler;
-
-      function handler(event) {
-
-        if (event.type === 'mouseover') {
-          // event.target.style.background = 'red';
-
-          tl.play();
-        }
-
-        if (event.type === 'mouseout') {
-          // event.target.style.background = '';
-          tl.reverse();
-        }
-      }
-
-      tl.fromTo(this.itemSquareT, duration,
-        {
-          width: 0,
-          background: bgColor,
-          immediateRender: false,
-          autoRound: false,
-          ease: easing
-        },
-        {
-          width: '100%',
-          background: bgColor
-        }
-      );
-
-      tl.fromTo(this.itemSquareR, duration,
-        {
-          height: 0,
-          background: bgColor,
-          immediateRender: false,
-          autoRound: false,
-          ease: easing
-        },
-        {
-          height: '100%',
-          background: bgColor
-        }
-      );
-
-      tl.fromTo(this.itemSquareB, duration,
-        {
-          width: 0,
-          background: '#000',
-          immediateRender: false,
-          autoRound: false,
-          ease: easing
-        },
-        {
-          width: '100%',
-          background: bgColor
-        }
-      );
-
-      tl.fromTo(this.itemSquareL, duration,
-        {
-          height: 0,
-          background: bgColor,
-          immediateRender: false,
-          autoRound: false,
-          ease: easing
-        },
-        {
-          height: '100%',
-          background: bgColor
-        }
-      );
-
-      // tl
-      //   .progress(1).progress(0);
-      //   // .play();
-    }
+        this.tl
+          .staggerTo(img, .5, { autoAlpha: 1, y: 0 }, .15)
+          .staggerTo(contentItems, .3, { autoAlpha: 1, y: 0 }, .15, '-=.8');
+      });
   }
 }
 
-// export default new ViewBlock();
+$('.view-block').each((i, el) => {
+  new ViewBlock(el);
+});

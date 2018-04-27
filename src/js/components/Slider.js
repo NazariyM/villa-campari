@@ -113,7 +113,16 @@ class Slider {
 
     this.$sportSlider.slick($.extend({}, defaultOptions, {
       slidesToShow: 2,
-      slidesToScroll: 1
+      slidesToScroll: 1,
+      infinite: false,
+      responsive: [
+        {
+          breakpoint: 1023,
+          settings: {
+            slidesToShow: 1
+          }
+        }
+      ]
     }));
   }
 }

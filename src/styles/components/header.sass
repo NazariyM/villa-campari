@@ -10,6 +10,8 @@
       position: relative
       max-width: 1200px
       padding: 0 45px
+      +sm
+         padding: 0 15px
    
    &__contact
       display: flex
@@ -18,35 +20,60 @@
       position: relative
       z-index: 1
       margin-bottom: -90px
+      +sm
+         padding: 15px 0 0
+      +xs
+         flex-direction: row-reverse
+         align-items: center
+         padding: 15px 0 0
+         margin-bottom: 0
+         
       address
          margin-right: 20px
          margin-left: 5px
          color: #fff
          font-style: normal
          +f('gil-600', 15, 27)
+         +xs
+            display: none
          
       &-col
          display: flex
          align-items: center
-         &:nth-child(1)
+         &:nth-of-type(1)
             transform: translateX(-70px)
             opacity: 0
-         &:nth-child(2)
+            +xs
+               transform: translateX(70px)
+         &:nth-of-type(2)
             transform: translateX(70px)
             opacity: 0
+            +xs
+               margin-right: auto
+               transform: translateX(-70px)
+               flex-direction: column
+               align-items: flex-start
          
       &-tel
          margin-right: 15px
          +f('gil-600', 22, 22, 50)
          color: #fff
          transition: .5s ease
-         
+         +sm
+            font-size: 17px
+            line-height: 17px
+         +xs
+            margin-right: 0
+            font-size: 13px
+            line-height: 13px
          .no-touch &:hover
             color: $color1
       &-btn
          +f('gil-700', 12, 21, 100)
          text-transform: uppercase
          color: #ffe09c
+         +xs
+            display: none
          .no-touch &:hover span
             border-bottom-color: transparent
          span
@@ -56,44 +83,113 @@
    &__logo
       margin: 0 auto -70px
       opacity: 0
-      
+      +sm
+         margin: 0 auto 15px
+      +xs
+         position: relative
+         z-index: 1
+         max-width: 80px
+         margin: 5px auto 15px
+   
    &__nav
    
    &__menu
       position: relative
       margin-top: 40px
       padding: 10px 0 22px
-      
+      +sm
+         padding: 10px 0
+      +xs
+         padding: 0
+         margin-top: -45px
+   
    &__line
       position: absolute
       top: 60px
       width: 0
       height: 1px
       background: $white
+      +xs
+         top: 53px
       &_left
          left: -30px
+         +sm
+            left: 0
       &_right
          right: -30px
+         +sm
+            right: 0
          
       &:nth-child(2n)
          top: auto
          bottom: 0
+         +sm
+            display: none
    
-.nav
+.header__nav
+   +xs
+      position: fixed
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      height: 100vh
+      transform: translateX(-100%)
+      transition: .4s ease-in-out
+      background: url("../img/bg/nav_bg.png") no-repeat center / cover
+      +mob-fix
+         padding-top: 50px
+      
+   &.is-active
+      transform: translateX(0)
+      
    ul
       display: flex
       justify-content: center
+      +sm
+         justify-content: space-between
+      +xs
+         max-width: 300px
+         margin: 0 auto
+         flex-direction: column
+         align-items: flex-start
+         height: 100%
+         justify-content: center
       li
+         +xs
+            &:not(:last-child)
+               margin-bottom: 25px
          &:nth-child(1)
             margin-right: 66px
+            +md
+               margin-right: 30px
+            +sm
+               margin-right: 0
+               
          &:nth-child(2)
             margin-right: 56px
+            +md
+               margin-right: 30px
+            +sm
+               margin-right: 0
          &:nth-child(3)
             margin-right: 220px
+            +md
+               margin-right: 200px
+            +sm
+               margin-right: 0
          &:nth-child(4)
             margin-right: 65px
+            +md
+               margin-right: 30px
+            +sm
+               margin-right: 0
          &:nth-child(5)
             margin-right: 75px
+            +md
+               margin-right: 30px
+            +sm
+               margin-right: 0
             
          &:nth-child(-n + 3)
             transform: translateX(-50px)
@@ -126,8 +222,73 @@
    align-items: center
    max-width: 110px
    text-align: center
-   img
-      margin-bottom: 20px
    +f('yes', 20, 20, 100)
    text-transform: uppercase
    color: #fff
+   +sm
+      font-size: 18px
+      line-height: 18px
+   +xs
+      font-size: 14px
+      line-height: 14px
+      
+   img
+      margin-bottom: 20px
+      +sm
+         margin-bottom: 10px
+         width: 50px
+         height: 60px
+      +xs
+         width: 40px
+         height: 50px
+
+.hamburger
+   display: none
+   margin-left: 20px
+   width: 34px
+   height: 24px
+   position: relative
+   transition: .5s ease-in-out
+   cursor: pointer
+   z-index: 5
+   -webkit-tap-highlight-color: transparent
+   opacity: 0
+   transform: translateX(70px)
+   +xs
+      display: block
+      
+   &:hover &__line
+      background: $black
+      +sm
+         background: $white
+   &__line
+      display: block
+      position: absolute
+      height: 2px
+      width: 100%
+      background: $white
+      border-radius: 50px
+      opacity: 1
+      left: 0
+      transform: rotate(0deg)
+      transition: .25s ease-in-out
+      &:nth-child(1)
+         top: 0
+      &:nth-child(2),
+      &:nth-child(3)
+         top: 11px
+      &:nth-child(4)
+         top: 22px
+   &.is-active &__line
+      &:nth-child(1)
+         top: 10px
+         width: 0
+         left: 50%
+      &:nth-child(2)
+         transform: rotate(45deg)
+      &:nth-child(3)
+         transform: rotate(-45deg)
+      &:nth-child(4)
+         top: 10px
+         width: 0
+         left: 50%

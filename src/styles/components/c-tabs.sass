@@ -1,15 +1,25 @@
 .c-tabs
+	+xs
+		display: flex
+		flex-direction: column
 	&__tabs-nav
 		position: relative
 		display: flex
+		flex-wrap: wrap
 		z-index: 1
 		margin-bottom: 30px
+		+xs
+			padding-top: 10px
+			width: 100%
+			order: 1
+			flex-direction: column
+			margin-bottom: 0
 		
 	&__tabs-for
-		//height: 475px!important
-		//padding-top: 30px
 		position: relative
 	&__tabs-el
+		opacity: 0
+		transform: translateY(100px)
 		position: relative
 		min-width: 176px
 		padding: 16px 27px 15px
@@ -23,6 +33,8 @@
 		border: 2px solid #e4181b
 		background-color: #fff
 		+trs
+		+xs
+			padding: 12px 15px 11px
 		&.is-active
 			pointer-events: none
 			background-color: #ffc446
@@ -35,9 +47,15 @@
 			box-shadow: inset 0 0 15px darken(#e4181b, 15)
 		&:not(:last-child)
 			margin-right: 10px
+			+xs
+				margin-right: 0
+				margin-bottom: 15px
 	
 	&__tab
 		display: none
 		
 		&:first-child
 			display: block
+			
+	&__img
+		width: 0

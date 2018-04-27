@@ -5,6 +5,9 @@ body
   -moz-osx-font-smoothing: grayscale
   +f('gil-400', 16, 25)
   color: $color1
+  +xs
+    font-size: 15px
+    line-height: 22px
   &.is-locked
     overflow: hidden
     position: fixed
@@ -32,6 +35,9 @@ body
   text-align: center
   text-transform: none
   color: #1f2032
+  +xs
+    font-size: 30px
+    line-height: 32px
   span
     +f('gil-600')
   
@@ -40,7 +46,9 @@ body
   line-height: 1.2
   color: #1f2032
   text-transform: uppercase
-  
+  +xs
+    font-size: 24px
+
 .title-decor
   position: relative
   display: flex
@@ -49,8 +57,12 @@ body
   &__line
     position: relative
     height: 2px
-    width: 124px
+    width: 0
+    opacity: 0
     background: $yellow
+    +xs
+      position: absolute
+      bottom: -10px
     &::after, &::before
       position: absolute
       width: 2px
@@ -66,12 +78,50 @@ body
       
     &_l
       margin-right: 15px
+      +xs
+        margin-right: 0
+      
       &::after, &::before
         left: 0
     &_r
       margin-left: 15px
+      +xs
+        margin-left: 0
       &::after, &::before
         right: 0
+        
+.title-lined
+  position: relative
+  display: flex
+  align-items: center
+  justify-content: space-between
+  h3
+    flex: 0 0 260px
+    +xs
+      flex: 0 1 auto
+  &__line
+    flex-shrink: 0
+    margin-top: -1px
+    width: 80px
+    height: 2px
+    z-index: 1
+    transition: .3s ease
+    background: #ffaa46
+    +xs
+      display: none
+    &::after
+      top: 50%
+      right: -14px
+      margin-top: -7px
+      width: 14px
+      height: 14px
+      position: absolute
+      border: 2px solid #ffaa46
+      border-radius: 50%
+      box-shadow: 0 0 1px 0 #fff
+      z-index: 1
+      content: ''
+      
 .btn
   $parent: &
   position: relative

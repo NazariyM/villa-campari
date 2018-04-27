@@ -1,20 +1,25 @@
 .about-block
    padding: 81px 0 92px
    overflow: hidden
+   +xs
+      padding: 100px 0 50px
    
    &__container
       position: relative
       max-width: 1630px
+      padding: 0
       
    &__text
       position: relative
       z-index: 1
       max-width: 700px
-      
+   
    &__title
       margin-bottom: 32px
       line-height: 47px
       text-align: left
+      +sm
+         max-width: 440px
       
    &__descr
       p
@@ -29,6 +34,14 @@
       right: -55px
       width: 44.2%
       padding-top: 30.23%
+      +sm
+         top: -63px
+         right: 0
+         width: 47.2%
+         padding-top: 33.23%
+      +xs
+         top: -100px
+         
    &__img
       +coverdiv
       +cover

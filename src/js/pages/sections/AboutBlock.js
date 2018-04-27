@@ -1,7 +1,6 @@
 import { TimelineMax } from 'gsap';
 import SplitText from '../../modules/dep/SplitText';
 import ScrollAnim from '../../modules/dev/animation/scrollAnim';
-import { preloader } from '../../components/preloader';
 
 class AboutBlock {
   constructor () {
@@ -15,7 +14,7 @@ class AboutBlock {
     if (this.block) this.init();
   }
 
-  async init () {
+  init () {
     const _this = this;
 
     this.prepareAnim();

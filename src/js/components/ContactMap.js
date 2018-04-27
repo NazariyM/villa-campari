@@ -1,32 +1,43 @@
+import { TimelineMax } from 'gsap';
+import ScrollAnim from '../modules/dev/animation/scrollAnim';
+
 class ContactMap {
   constructor() {
-    this.$block = $('.contacts');
+    this.$container = $('.contacts');
+    this.$block = this.$container.find('.contacts__block');
+    this.$blockItems = this.$block.children();
+    this.tl = new TimelineMax();
 
-    if (this.$block.length) this.init();
+    if (this.$container.length) this.init();
   }
 
   init() {
     this.createMap();
+
+    const _this = this;
+
+    new ScrollAnim({
+      el: this.$container.get(0),
+      hook: .75,
+      onEnter: () => {
+        _this.startAnim();
+      }
+    });
   }
 
   createMap() {
 
     const map = new google.maps.Map(document.querySelector('.contacts__map'), {
-      center: new google.maps.LatLng(55.769438, 37.627655),
-      zoom: 17,
-      disableDefaultUI: true,
-      styles: [{
-        stylers: [{
-          saturation: -100
-        }]
-      }]
+      center: new google.maps.LatLng(45.422593, 35.820794),
+      zoom: 15,
+      disableDefaultUI: true
     });
+  }
 
-    const marker = new google.maps.Marker({
-      position: new google.maps.LatLng(55.769613, 37.626198),
-      icon: 'static/img/other/map-marker.png',
-      map: map
-    });
+  startAnim() {
+    this.tl
+      .to(this.$block, .6, { autoAlpha: 1, y: 0 })
+      .staggerTo(this.$blockItems, .2, { autoAlpha: 1, y: 0 }, .15);
   }
 
 }

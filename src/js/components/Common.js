@@ -3,9 +3,14 @@ import objectFitImages from 'object-fit-images';
 import './NoTouch';
 
 import './preloader';
+import '../components/Anims';
 import '../pages/sections/Screen';
 import '../pages/sections/AboutBlock';
+import '../pages/sections/Restaurant';
 import '../pages/sections/ViewBlock';
+import '../pages/sections/Sport';
+import '../pages/sections/Excurs';
+import './ContactMap';
 import './Header';
 import './c-tabs';
 import './Slider';

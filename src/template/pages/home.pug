@@ -2,6 +2,7 @@ extends ../extend/default
 
 block variables
 	- var title = 'Home page';
+	- var contactMap = true;
 
 block main
 	main.content
@@ -24,12 +25,12 @@ block main
 
 				.offers__container.container
 					.offers__block
-						.offers__block-title.title-2
+						.offers__block-title.title-2.title-lined
 							h3 GRAND VIEW SEA VILLA
+							.title-lined__line
 
-						.offers__block-descr
-							p Одна из самых больших  панорамных Вилл, с которой открывается изумительный вид на бирюзовую гладь моря, Русскую бухту и заповедник Казантип.
-							p Двухэтажная просторная вилла со всеми удобствами, двумя спальнями с кондиционерами, кухней- гостиной с обеденной зоной, крытой террасой с уютной лаунж-зоной для отдыха и релакса на воздухе.
+						p Одна из самых больших  панорамных Вилл, с которой открывается изумительный вид на бирюзовую гладь моря, Русскую бухту и заповедник Казантип.
+						p Двухэтажная просторная вилла со всеми удобствами, двумя спальнями с кондиционерами, кухней- гостиной с обеденной зоной, крытой террасой с уютной лаунж-зоной для отдыха и релакса на воздухе.
 						.offers__block-info
 							.offers__block-price
 								span от 4 000 руб.
@@ -40,12 +41,12 @@ block main
 
 				.offers__container.container
 					.offers__block
-						.offers__block-title.title-2
+						.offers__block-title.title-2.title-lined
 							h3 GRAND VIEW SEA VILLA
+							.title-lined__line
 
-						.offers__block-descr
-							p Одна из самых больших  панорамных Вилл, с которой открывается изумительный вид на бирюзовую гладь моря, Русскую бухту и заповедник Казантип.
-							p Двухэтажная просторная вилла со всеми удобствами, двумя спальнями с кондиционерами, кухней- гостиной с обеденной зоной, крытой террасой с уютной лаунж-зоной для отдыха и релакса на воздухе.
+						p Одна из самых больших  панорамных Вилл, с которой открывается изумительный вид на бирюзовую гладь моря, Русскую бухту и заповедник Казантип.
+						p Двухэтажная просторная вилла со всеми удобствами, двумя спальнями с кондиционерами, кухней- гостиной с обеденной зоной, крытой террасой с уютной лаунж-зоной для отдыха и релакса на воздухе.
 						.offers__block-info
 							.offers__block-price
 								span от 4 000 руб.
@@ -55,12 +56,12 @@ block main
 				.c-tabs__img.offers__img(style='background-image: url(static/img/content/offer_bg.jpg)')
 				.offers__container.container
 					.offers__block
-						.offers__block-title.title-2
+						.offers__block-title.title-2.title-lined
 							h3 GRAND VIEW SEA VILLA
+							.title-lined__line
 
-						.offers__block-descr
-							p Одна из самых больших  панорамных Вилл, с которой открывается изумительный вид на бирюзовую гладь моря, Русскую бухту и заповедник Казантип.
-							p Двухэтажная просторная вилла со всеми удобствами, двумя спальнями с кондиционерами, кухней- гостиной с обеденной зоной, крытой террасой с уютной лаунж-зоной для отдыха и релакса на воздухе.
+						p Одна из самых больших  панорамных Вилл, с которой открывается изумительный вид на бирюзовую гладь моря, Русскую бухту и заповедник Казантип.
+						p Двухэтажная просторная вилла со всеми удобствами, двумя спальнями с кондиционерами, кухней- гостиной с обеденной зоной, крытой террасой с уютной лаунж-зоной для отдыха и релакса на воздухе.
 						.offers__block-info
 							.offers__block-price
 								span от 4 000 руб.
@@ -80,6 +81,7 @@ block main
 				-i = 0
 				while i < 2
 					+e.card
+						+e.card-mask
 						+e.card-inner
 							+e.card-col
 								+e.card-title.title-2
@@ -91,7 +93,6 @@ block main
 										g
 											g(transform='translate(-494 -2170)')
 												use(xlink:href='#563ra')
-
 
 									span ОЗНАКОМИТСЯ С МЕНЮ
 
@@ -130,6 +131,7 @@ block main
 			span.title-decor__line.title-decor__line_l
 			h2 Спорт
 			span.title-decor__line.title-decor__line_r
+		+e.IMG.decor-img(src='static/img/other/sun.svg' alt='image')
 
 		+e.slider
 			-
@@ -177,6 +179,8 @@ block main
 	+b.SECTION.excurs
 		+e.container.container
 			+e.inner
+				+e.IMG.decor-img._l(src='static/img/other/sun_l.svg' alt='image')
+				+e.IMG.decor-img._r(src='static/img/other/sun_r.svg' alt='image')
 				+e.A.item._sm(href='#!')
 					+e.item-img(style='background-image: url(static/img/content/excurs_1.jpg)')
 					+e.item-content
@@ -225,13 +229,34 @@ block main
 							p Не ждал ничего от экскурсии и ошибся. Недолгий рассказ о производстве напитка с массой любопытных деталей. На дегустации убедился, что до этого пил вино неправильно и многое терял из ощущений. В магазине ассортимент больше, но по отдельным позициям на 10% дороже, чем в городе.
 	//end excurs
 
+	//begin contacts
+	+b.SECTION.contacts
+		+e.container.container
+			+e.block
+				+e.block-title.title-2.title-lined
+					h2 НАШИ КОНТАКТЫ
+					.title-lined__line
+				+e.block-field
+					p Крым, г. Щелкино, п.г.т. Нептун
+				+e.block-field
+					+e.A(href='tel:+74956264131') +7 (495) 626 41 31
+				+e.block-field
+					+e.A(href='mailto:villacampari@villa.ru') villacampari@villa.ru
+				+e.block-field
+					p Пн-пт: 9.00-18.00
+				+e.block-btn.btn.btn_red(href='#!') подробнее
+		+e.map-wrap(data-anim='fade-x')
+			+e.map
+
+	//end contacts
+
 	//begin insta
 	+b.SECTION.insta
 		+e.container.container
-			+e.title.title-1
+			+e.title.title-1.title-decor(data-speed='0.03')
 				h2 Следите за нашими новостями в инстаграм
 
-		+e.inner
+		+e.inner(data-anim='fade-y' data-anim-duration='1')
 			-
 				imgList = [0, 1, 2, 3, 4, 5]
 
@@ -252,19 +277,19 @@ block main
 	-viewBlock = {classMod: '_events', title: 'Последние события'}
 	-
 		viewList = [{
-		img: 1,
-		date: '22.03.2018',
-		descr: 'Двухэтажная просторная вилла со всеми удобствами, двумя спальнями с кондиционерами',
-		btnClass: '_yellow'
-		}, {
-		img: 2,
-		date: '22.03.2018',
-		descr: 'Одна из самых больших  панорамных Вилл, с которой открывается изумительный вид на бирюзовую гладь моря, Русскую бухту и заповедник Казантип.',
-		btnClass: '_yellow'
-		}, {
-		img: 3,
-		date: '22.03.2018',
-		descr: 'Двухэтажная просторная вилла со всеми удобствами, двумя спальнями с кондиционерами',
-		btnClass: '_yellow'
+			img: 1,
+			date: '22.03.2018',
+			descr: 'Двухэтажная просторная вилла со всеми удобствами, двумя спальнями с кондиционерами',
+			btnClass: '_yellow'
+			}, {
+			img: 2,
+			date: '22.03.2018',
+			descr: 'Одна из самых больших  панорамных Вилл, с которой открывается изумительный вид на бирюзовую гладь моря, Русскую бухту и заповедник Казантип.',
+			btnClass: '_yellow'
+			}, {
+			img: 3,
+			date: '22.03.2018',
+			descr: 'Двухэтажная просторная вилла со всеми удобствами, двумя спальнями с кондиционерами',
+			btnClass: '_yellow'
 		}]
 	include ../components/view-block

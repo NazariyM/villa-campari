@@ -2,11 +2,14 @@
    position: relative
    z-index: 1
    margin-bottom: -37px
+   +xs
+      margin-bottom: 10px
    &__container
       position: relative
       z-index: 1
-      padding: 30px 0 7px
-   
+      padding: 30px 15px 7px
+      +xs
+         padding: 30px 15px 60px
    &__block
       position: relative
       max-width: 445px
@@ -14,6 +17,11 @@
       background: #fff
       border: 7px solid #f1f1f1
       border-bottom: 0
+      transform: translateY(50%)
+      opacity: 0
+      +xs
+         max-width: none
+         padding: 25px 20px 0
       &::after
          position: absolute
          left: -7px
@@ -27,35 +35,47 @@
       
       
       &-title
-         max-width: 260px
          margin-bottom: 10px
+         transform: translateY(50%)
+         opacity: 0
          
-      &-descr
-         margin-bottom: 10px
-         p
-            color: #272727
-            &:not(:last-child)
-               margin-bottom: 10px
+      p
+         transform: translateY(50%)
+         opacity: 0
+         color: #272727
+         &:not(:last-child)
+            margin-bottom: 10px
                
       &-info
          display: flex
-         
+         transform: translateY(50%)
+         opacity: 0
+         +xs
+            flex-direction: column
+            align-items: center
+            
       &-price
          margin-right: 20px
          +f('gil-900', 25, 48)
+         +xs
+            margin: 0 0 5px
+            font-size: 22px
+            line-height: 38px
          
       &-more
          min-width: 160px
    
    &__img
-      //height: 475px
       +coverdiv
       +cover
    
 .restaurant
    position: relative
    padding: 105px 0 100px
-   
+   overflow: hidden
+   +xs
+      padding: 50px 0 70px
+      
    &__bg
       +coverdiv
       +cover
@@ -72,21 +92,46 @@
       max-width: 720px
    
    &__slider
+      .slider__btn
+         +sm
+            top: 116%
+         +xs
+            top: 108%
       .slider__btn_prev
          left: -300px
+         +md
+            left: -20%
+         +sm
+            left: 3%
+      
       .slider__btn_next
          right: -300px
+         +md
+            right: -20%
+         +sm
+            right: 3%
       
    &__card
+      position: relative
       padding: 40px 55px 25px 25px
       margin: 0 15px
-      border-radius: 20px
-      background: rgba(#fff, .66)
       color: #000
+      +xs
+         padding: 30px 20px 25px 20px
+         margin: 0
+      &-mask
+         +coverdiv
+         background: rgba(#fff, .66)
+         content: ''
+         border-radius: 20px
       
       &-inner
+         position: relative
+         z-index: 1
          display: flex
          margin: 0 -10px
+         +xs
+            flex-direction: column
          
       &-col
          padding: 0 10px
@@ -95,8 +140,13 @@
          align-items: flex-start
          &:nth-child(1)
             flex: 0 0 256px
+            +xs
+               flex: 0 1 auto
+               margin-bottom: 20px
          &:nth-child(2)
             flex: 0 0 350px
+            +xs
+               flex: 0 1 auto
    
       &-title
          margin-bottom: 20px
@@ -128,18 +178,39 @@
          margin-top: auto
          
 .sport
+   position: relative
    padding: 0 0 40px
    &__title
       margin-bottom: 50px
+      
+   &__decor-img
+      position: absolute
+      left: 50%
+      bottom: 35%
+      margin-left: -87px
+      z-index: 2
+      opacity: 0
+      transform: scale(0)
+      +sm
+         bottom: -30px
    
    &__slider
+      .slider__btn
+         +md
+            top: 88%
       .slider__btn_prev
          left: 25px
+         +r(1900)
+            left: 15px
       .slider__btn_next
          right: 25px
+         +r(1900)
+            right: 15px
       .slider__btn-arrow
          fill: $white
-      
+         +r(1900)
+            width: 86px
+   
    &__item
       $parent: &
       position: relative
@@ -147,16 +218,19 @@
       height: 527px
       color: #fff
       text-align: center
+      +gpu
+      
       &-inner
          max-width: 480px
          padding: 83px 15px 0
          margin: 0 auto
-      
+         +sm
+            padding: 65px 15px 0
+   
       &-img
          +coverdiv
          background: no-repeat 50% 100% / cover
          z-index: -1
-         +trs
          
       &-title
          max-width: 300px
@@ -165,8 +239,11 @@
          font-size: 35px
          color: #fff
          text-transform: none
+         +xs
+            margin: 0 auto
          &_width
             max-width: 228px
+            
       &-descr
          margin-bottom: 35px
          min-height: 148px
@@ -188,6 +265,8 @@
                border-bottom: 12px solid #fff
                border-right: 50vw solid transparent
                content: ''
+               +sm
+                  border-right: 100vw solid transparent
          &_r
             &::after
                position: absolute
@@ -196,18 +275,49 @@
                border-bottom: 12px solid #fff
                border-left: 50vw solid transparent
                content: ''
+               +sm
+                  border-left: 100vw solid transparent
          
 .excurs
    padding: 50px 0
+   +xs
+      padding: 50px 0 0
    &__container
    
    &__inner
+      position: relative
       +clr
       margin: 0 -15px
+      +sm
+         display: flex
+         flex-wrap: wrap
+         margin: 0 -5px
+      +xs
+         flex-direction: column
+         margin: 0 -15px
+      &::after
+         +sm
+            display: none
+         
+      
+   &__decor-img
+      position: absolute
+      transform: scale(0)
+      +r(1340)
+         display: none
+      &_r
+         top: -50px
+         right: -58px
+      &_l
+         bottom: -20px
+         left: -25px
       
    &__title
       display: block
       margin-bottom: 20px
+      +sm
+         font-size: 32px
+         margin-bottom: 10px
    &__descr
       
       p
@@ -220,6 +330,11 @@
       position: relative
       float: left
       margin: 0 15px 30px
+      +sm
+         float: none
+         margin: 0 5px 10px
+      +xs
+         margin: 0 15px 30px
       &:hover
          .excurs__item-center::after
             -webkit-clip-path: inset(0 0 0 0)
@@ -240,16 +355,55 @@
       &_sm
          max-width: 380px
          width: calc(33.33333% - 30px)
-         
+         +sm
+            width: calc(33.33333% - 10px)
+         +xs
+            width: calc(100% - 30px)
+            max-width: none
       &_md
          max-width: 760px
          width: calc(66.66667% - 30px)
+         +sm
+            width: calc(66.66667% - 10px)
+         +xs
+            width: calc(100% - 30px)
+            max-width: none
          
       &_vert
          width: calc(33.33333% - 30px)
+         +sm
+            width: calc(33.33333% - 10px)
+            margin-bottom: 0
+         +xs
+            width: calc(100% - 30px)
+            max-width: none
          
       &_horiz
          margin-top: -280px
+         +sm
+            margin-top: -270px
+         
+      &:nth-of-type(1)
+         +sm
+            order: 1
+      &:nth-of-type(2)
+         +sm
+            order: 5
+      &:nth-of-type(3)
+         +sm
+            order: 3
+         
+      &:nth-of-type(4)
+         +sm
+            order: 2
+         +xs
+            order: -1
+      &:nth-of-type(5)
+         +sm
+            order: 5
+      &:nth-of-type(6)
+         +sm
+            order: 6
          
       &-center
          display: flex
@@ -260,6 +414,9 @@
          border: 2px solid $yellow
          text-align: center
          overflow: hidden
+         +sm
+            padding: 0 10px
+            height: 270px
          &::after
             +coverdiv
             z-index: -1
@@ -277,8 +434,16 @@
          overflow: hidden
          transition: transform .35s
          +cover
+         +sm
+            height: 270px
+         +xs
+            height: 250px
          #{$parent}_vert &
             height: 531px
+            +sm
+               height: 551px
+            +xs
+               height: 250px
          &::after
             +coverdiv
             background-image: linear-gradient(to bottom, rgba(15, 14, 14, 0.35) 30%, #0e0e0e 100%)
@@ -295,12 +460,31 @@
          +coverdiv
          overflow: hidden
          justify-content: center
+         +sm
+            justify-content: flex-start
+         +xs
+            position: static
+            padding: 25px 20px 30px
+            background: #fff
+            
          #{$parent}_sm &
             padding: 0 23px
+            +sm
+               padding: 20px 22px 0
+            +xs
+               padding: 25px 0px 15px
          #{$parent}_md &
             padding: 0 60px 0 50px
+            +sm
+               padding: 35px 22px 0
+            +xs
+               padding: 25px 0px 15px
          #{$parent}_vert &
             padding: 0 22px
+            +sm
+               padding: 25px 22px 0
+            +xs
+               padding: 25px 0px 15px
    
       &-title
          position: relative
@@ -312,6 +496,12 @@
          transform: translate3d(0, 70%, 0)
          opacity: 0
          transition: opacity 0.35s .1s, transform 0.35s .1s
+         +sm
+            font-size: 25px
+         +xs
+            opacity: 1
+            transform: none
+            color: #000
    
       &-descr
          display: block
@@ -320,13 +510,26 @@
          transform: translate3d(0, 70%, 0)
          opacity: 0
          transition: opacity 0.35s .1s, transform 0.35s .1s
+         +xs
+            opacity: 1
+            transform: none
          p
             color: #fff
+            +sm
+               font-size: 15px
+            +xs
+               color: #000
             
 .insta
    
    &__container
-      margin: 0 auto 40px
+   
+   &__title
+      +sm
+         max-width: 670px
+         margin: 0 auto
+      +xs
+         max-width: 230px
    
    &__inner
       display: flex
@@ -336,6 +539,8 @@
       margin: 0 auto
       padding: 50px 0
       overflow: hidden
+      opacity: 0
+      transform: translateY(50%)
       
    &__img
       position: relative
@@ -345,6 +550,10 @@
       overflow-x: hidden
       transition: all 300ms cubic-bezier(0.165, 0.84, 0.44, 1)
       +gpu
+      +sm
+         flex: 0 0 (100% / 3)
+      +xs
+         flex: 0 0 (100% / 2)
       .no-touch &:hover
          transform: scale(1.15)
          z-index: 1
@@ -371,3 +580,62 @@
          height: 100%
          padding: 30%
          fill: $white
+         
+.contacts
+   padding: 60px 0 130px
+   +xs
+      padding: 30px 0 60px
+   &__container
+      position: relative
+   &__map-wrap
+      height: 282px
+      opacity: 0
+      transform: translateX(-100px)
+      position: relative
+   &__map
+      +coverdiv
+   &__block
+      opacity: 0
+      transform: translateY(100px)
+      position: absolute
+      top: -50px
+      left: 0
+      z-index: 1
+      max-width: 365px
+      padding: 50px 30px 40px 40px
+      border: 7px solid #f1f1f1
+      background: #fff
+      font-size: 20px
+      color: #272727
+      +sm
+         position: static
+         width: 100%
+         max-width: none
+         margin-bottom: 15px
+         font-size: 16px
+      +xs
+         padding: 40px 20px 30px 20px
+      &-title
+         opacity: 0
+         transform: translateY(50px)
+         margin-bottom: 15px
+         .title-lined__line
+            position: absolute
+            right: 0
+            bottom: 18px
+            +sm
+               display: none
+            
+      &-field
+         opacity: 0
+         transform: translateY(50px)
+         &:not(:last-child)
+            margin-bottom: 16px
+            +xs
+               margin-bottom: 8px
+            
+      &-btn
+         opacity: 0
+         transform: translateY(50px)
+         +xs
+            margin-top: 10px

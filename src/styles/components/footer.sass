@@ -1,2 +1,114 @@
 .footer
    +cover
+   padding: 60px 0
+   
+   &__container
+      position: relative
+      z-index: 1
+      max-width: 1200px
+      padding: 0 45px
+   
+   &__contact
+      display: flex
+      justify-content: space-between
+      padding: 10px 0
+      position: relative
+      z-index: 1
+      margin-bottom: -90px
+      address
+         margin-right: 20px
+         margin-left: 5px
+         color: #fff
+         font-style: normal
+         +f('gil-600', 15, 27)
+      
+      &-col
+         display: flex
+         align-items: center
+      
+      &-tel
+         margin-right: 15px
+         +f('gil-600', 22, 22, 50)
+         color: #fff
+         transition: .5s ease
+         
+         .no-touch &:hover
+            color: $color1
+      &-btn
+         +f('gil-700', 12, 21, 100)
+         text-transform: uppercase
+         color: #ffe09c
+         .no-touch &:hover span
+            border-bottom-color: transparent
+         span
+            +trs
+            border-bottom: 1px solid rgba(#ffe09c, .5)
+   
+   &__logo
+      margin: 0 auto -70px
+      display: flex
+      flex-direction: column
+      align-items: center
+      max-width: 110px
+      text-align: center
+      img
+         margin-bottom: 20px
+      +f('yes', 20, 20, 100)
+      text-transform: uppercase
+      color: #fff
+   
+   &__nav
+   
+   &__menu
+      position: relative
+      margin-top: 40px
+      padding: 10px 0 22px
+   
+   &__line
+      position: absolute
+      top: 60px
+      width: 0
+      height: 1px
+      background: $white
+      &_left
+         left: -30px
+      &_right
+         right: -30px
+      
+      &:nth-child(2n)
+         top: auto
+         bottom: 0
+
+.footer__nav
+   ul
+      display: flex
+      justify-content: center
+      li
+         &:nth-child(1)
+            margin-right: 66px
+         &:nth-child(2)
+            margin-right: 56px
+         &:nth-child(3)
+            margin-right: 220px
+         &:nth-child(4)
+            margin-right: 65px
+         &:nth-child(5)
+            margin-right: 75px
+         
+         a
+            display: flex
+            align-items: center
+            +f('gil-700', 12, 12)
+            color: #fff
+            text-transform: uppercase
+            white-space: nowrap
+            .no-touch &:hover span
+               border-bottom-color: transparent
+            span
+               +trs
+               letter-spacing: 0.1em
+               border-bottom: 1px solid rgba(#fff, .7)
+            svg
+               position: relative
+               top: -2px
+               margin-right: 8px
