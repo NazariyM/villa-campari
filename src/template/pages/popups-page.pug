@@ -1,0 +1,48 @@
+extends ../extend/default
+
+block variables
+	- var title = 'Номер';
+
+block header
+
+block main
+	main.content
+
+		.container(style='max-width: none; min-height: 1000px; padding: 200px 100px 0;')
+			a.btn.btn_yellow(href='#!' data-popup-target='order-popup')
+				span ОТПРАВИТЬ ЗАЯВКУ
+
+			a.btn.btn_yellow(href='#!' data-popup-target='callback-popup')
+				span ОБРАТНЫЙ ЗВОНОК
+
+		+b.popup(data-popup-id='order-popup' tabindex='-1', role='dialog')
+			+e.container
+				+e.title.title-2
+					h3 ФОРМА ЗАЯВКИ
+				+e.FORM.form(action='#!' method='POST')
+					+e.form-field
+						+e.INPUT.form-input(type='text' placeholder='Ваше ФИО' name='' required)
+					+e.form-field
+						+e.INPUT.form-input(type='text' placeholder='Номер телефона' name='' required)
+					+e.form-field
+						+e.INPUT.form-input(type='text' placeholder='Ваш e-mail' name='' required)
+					+e.form-field
+						+e.INPUT.form-input(type='text' placeholder='Ваш комментарий' name='' required)
+
+					+e.form-submit
+						+e.INPUT.form-submit-btn.btn._yellow(type='submit' value='ОТПРАВИТЬ ЗАЯВКУ')
+
+		+b.popup(data-popup-id='callback-popup' tabindex='-1', role='dialog')
+			+e.container
+				+e.title._width.title-2
+					h3 ОБРАТНЫЙ ЗВОНОК
+				+e.FORM.form(action='#!' method='POST')
+					+e.form-field
+						+e.INPUT.form-input(type='text' placeholder='Ваше ФИО' name='' required)
+					+e.form-field
+						+e.INPUT.form-input(type='text' placeholder='Номер телефона' name='' required)
+
+					+e.form-submit
+						+e.INPUT.form-submit-btn.btn._yellow(type='submit' value='ОТПРАВИТЬ ЗАЯВКУ')
+
+block footer

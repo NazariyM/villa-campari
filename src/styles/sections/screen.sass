@@ -1,4 +1,5 @@
 .screen
+   $parent: &
    position: relative
    height: 100vh
    padding-top: 140px
@@ -15,9 +16,15 @@
       max-width: 1240px
       +xs
          padding: 0 35px
+         
+      #{$parent}_room &
+         +xs
+            padding: 0 15px 30px
    
    &__text
       position: relative
+      #{$parent}_room &
+         text-align: center
    
    &__title
       max-width: 740px
@@ -26,6 +33,33 @@
       font-size: 60px
       line-height: 65px
       color: #fff
+      #{$parent}_room &
+         margin: 0 auto 15px
+         +f('yes', 50)
+         text-align: center
+         +xs
+            margin: 0 auto 10px
+            font-size: 26px
+         h2
+            position: relative
+            display: inline-block
+            padding: 0 58px
+            +xs
+               padding: 0
+            &::after, &::before
+               position: absolute
+               top: 50%
+               margin-top: -5px
+               width: 43px
+               height: 10px
+               background-image: url(../img/other/yellow-decor_sm.png)
+               content: ''
+               +xs
+                  display: none
+            &::before
+               left: 0
+            &::after
+               right: 0
       +xs
          margin-bottom: 30px
          font-size: 30px
@@ -59,3 +93,16 @@
       &-img
          +coverdiv
          +cover
+         
+   &__descr
+      max-width: 824px
+      margin: 0 auto
+      color: #fff
+      font-size: 18px
+      line-height: 25px
+      +xs
+         font-size: 16px
+         line-height: 22px
+      &-field
+         &:not(:last-child)
+            margin-bottom: 10px

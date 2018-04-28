@@ -18,7 +18,8 @@
     "npm": "^5.8.0",
     "object-fit-images": "^3.2.3",
     "scrollmagic": "^2.0.5",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "vintage-popup": "^0.1.10"
   },
   "author": "Nazar",
   "devDependencies": {

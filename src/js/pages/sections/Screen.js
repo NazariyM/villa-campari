@@ -4,16 +4,16 @@ import SplitText from '../../modules/dep/SplitText';
 
 class Screen {
   constructor () {
-    this.container = document.querySelector('.screen');
-    this.title = this.container.querySelector('.screen__title');
-    this.btn = this.container.querySelector('.screen__btn');
-    this.imgWrap = this.container.querySelector('.screen__img-wrap');
-    this.img = this.container.querySelector('.screen__img');
-    this.decorX = this.container.querySelector('.screen__decor_x').children;
-    this.decorY = this.container.querySelector('.screen__decor_y').children;
+    this.$container = $('.screen');
+    this.title = this.$container.find('.screen__title');
+    this.btn = this.$container.find('.screen__btn');
+    this.imgWrap = this.$container.find('.screen__img-wrap');
+    this.img = this.$container.find('.screen__img');
+    this.decorX = this.$container.find('.screen__decor_x').children();
+    this.decorY = this.$container.find('.screen__decor_y').children();
     this.tl = new TimelineMax();
 
-    if (this.container) this.init();
+    if (this.$container.length) this.init();
 
   }
 

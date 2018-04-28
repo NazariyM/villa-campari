@@ -8,6 +8,7 @@ class Slider {
 
   constructor () {
     this.$slider = $('.slider');
+    this.$viewSlider = $('.view-slider');
     this.$sportSlider = $('.sport__slider');
 
     this.arrow = `<svg class="slider__btn-arrow" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -124,6 +125,34 @@ class Slider {
         }
       ]
     }));
+
+    this.$viewSlider.each(function (i, slider) {
+      const $slider = $(slider);
+      const $sldFor = $slider.find('.view-slider__for');
+      const $sldNav = $slider.find('.view-slider__nav');
+
+      $sldFor.slick($.extend({}, defaultOptions, {
+        asNavFor: '.view-slider__nav',
+        arrows: false
+      }));
+
+      $sldNav.slick($.extend({}, defaultOptions, {
+        asNavFor: '.view-slider__for',
+        slidesToShow: 4,
+        swipe: false,
+        arrows: false,
+        focusOnSelect: true,
+        vertical: true,
+        responsive: [
+          {
+            breakpoint: 767,
+            settings: {
+              vertical: false
+            }
+          }
+        ]
+      }));
+    });
   }
 }
 

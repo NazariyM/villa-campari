@@ -1,6 +1,7 @@
 import { TimelineMax, TweenMax } from 'gsap';
 import ScrollAnim from '../modules/dev/animation/scrollAnim';
 import SplitText from '../modules/dep/SplitText';
+import { preloader } from './preloader'
 
 class Anims {
   constructor () {
@@ -13,9 +14,10 @@ class Anims {
     this.init();
   }
 
-  init() {
+  async init() {
+    await preloader.wait();
     this.prepareDecorTitlesAnim();
-    this.scrollAnim();
+    await this.scrollAnim();
   }
 
   scrollAnim() {

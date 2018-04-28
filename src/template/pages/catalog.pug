@@ -1,0 +1,51 @@
+extends ../extend/default
+
+block variables
+	- var title = 'Каталог';
+	-headerClass = '_static';
+	-headerBg = true;
+
+block main
+	main.content
+
+	//begin offers
+	+b.SECTION.offers._catalog
+		+e.descr(data-anim='fade-y')
+			+e.descr-container.container
+				p Живописное побережье Крыма привлекает к себе множество туристов со всего мира. Мы откроем для Вас все красоты нашего крася, вы сможете прикоснуться к тайнам истории, ощутить невероятную энергетику самых загадочных и пинтересных мест, мы наполним вашу душу впечатлениями! Villa Capri подготовила различные экскурсионные программы, который будут интересны для Вас и ваших детей.
+
+		-
+			offersList = [{
+			classMod: '_left',
+			title: 'GRAND VIEW SEA VILLA',
+			bg: 1
+			}, {
+			classMod: '_right',
+			title: 'ПРОГУЛКА ПО СТАРОМУ ГОРОДУ',
+			bg: 2
+			}, {
+			classMod: '_left',
+			title: 'САФАРИ ПАРК ЛЬВОВ',
+			bg: 3
+			}]
+
+		mixin offersItem(item)
+			+e.item(class= item.classMod)
+				.offers__img(style=`background-image: url(static/img/bg/cat-bg_${item.bg}.jpg)`)
+				.offers__container.container
+					.offers__block(data-anim='fade-x')
+						.offers__block-title.title-2.title-lined
+							h3= item.title
+							.title-lined__line
+
+						p Одна из самых больших  панорамных Вилл, с которой открывается изумительный вид на бирюзовую гладь моря, Русскую бухту и заповедник Казантип.
+						p Двухэтажная просторная вилла со всеми удобствами, двумя спальнями с кондиционерами, кухней- гостиной с обеденной зоной, крытой террасой с уютной лаунж-зоной для отдыха и релакса на воздухе.
+						.offers__block-info
+							.offers__block-price
+								span от 4 000 руб.
+							a.offers__block-more.btn.btn_red(href='#!') подробнее
+
+		each item in offersList
+			+offersItem(item)
+
+	//end offers

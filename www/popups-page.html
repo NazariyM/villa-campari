@@ -1,0 +1,84 @@
+<!-- btn-->
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#027d65">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Номер</title>
+    <link href="static/css/index.css" rel="stylesheet">
+    <link rel="icon" href="static/favicon.png">
+  </head>
+  <body>
+    <!--begin preloader-->
+    <div class="preloader">
+      <div class="preloader__box preloader__box_top"></div>
+      <div class="preloader__box preloader__box_bot"></div>
+      <div class="preloader__box preloader__box_left"></div>
+      <div class="preloader__box preloader__box_right"></div>
+    </div>
+    <!--end preloader-->
+    <!-- picture element HTML5 shiv-->
+    <script>
+      document.createElement('picture');
+    </script>
+    <!-- Main content-->
+    <main class="content">
+      <div class="container" style="max-width: none; min-height: 1000px; padding: 200px 100px 0;">
+        <a class="btn btn_yellow" href="#!" data-popup-target="order-popup">
+          <span>ОТПРАВИТЬ ЗАЯВКУ</span>
+        </a>
+        <a class="btn btn_yellow" href="#!" data-popup-target="callback-popup">
+          <span>ОБРАТНЫЙ ЗВОНОК</span>
+        </a>
+      </div>
+      <div class="popup" data-popup-id="order-popup" tabindex="-1" role="dialog">
+        <div class="popup__container">
+          <div class="popup__title title-2">
+            <h3>ФОРМА ЗАЯВКИ</h3>
+          </div>
+          <form class="popup__form" action="#!" method="POST">
+            <div class="popup__form-field">
+              <input class="popup__form-input" type="text" placeholder="Ваше ФИО" name="" required="required" />
+            </div>
+            <div class="popup__form-field">
+              <input class="popup__form-input" type="text" placeholder="Номер телефона" name="" required="required" />
+            </div>
+            <div class="popup__form-field">
+              <input class="popup__form-input" type="text" placeholder="Ваш e-mail" name="" required="required" />
+            </div>
+            <div class="popup__form-field">
+              <input class="popup__form-input" type="text" placeholder="Ваш комментарий" name="" required="required" />
+            </div>
+            <div class="popup__form-submit">
+              <input class="popup__form-submit-btn btn btn_yellow" type="submit" value="ОТПРАВИТЬ ЗАЯВКУ" />
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="popup" data-popup-id="callback-popup" tabindex="-1" role="dialog">
+        <div class="popup__container">
+          <div class="popup__title popup__title_width title-2">
+            <h3>ОБРАТНЫЙ ЗВОНОК</h3>
+          </div>
+          <form class="popup__form" action="#!" method="POST">
+            <div class="popup__form-field">
+              <input class="popup__form-input" type="text" placeholder="Ваше ФИО" name="" required="required" />
+            </div>
+            <div class="popup__form-field">
+              <input class="popup__form-input" type="text" placeholder="Номер телефона" name="" required="required" />
+            </div>
+            <div class="popup__form-submit">
+              <input class="popup__form-submit-btn btn btn_yellow" type="submit" value="ОТПРАВИТЬ ЗАЯВКУ" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+    <!-- Scripts-->
+    <script src="static/js/jquery-3.3.1.min.js"></script>
+    <script src="static/js/index.js"></script>
+  </body>
+</html>

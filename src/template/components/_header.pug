@@ -1,5 +1,6 @@
 //begin header
-+b.HEADER.header(class= headerClass ? headerClass : '')
++b.HEADER.header(class= headerClass ? headerClass : '' style= headerBg ? 'background-image: url(static/img/bg/header_bg.jpg)' : '')
+
 	+e.container.container
 		+e.contact
 			button.hamburger.js-hamburger(type='button')
@@ -25,7 +26,7 @@
 			+e.NAV.nav.nav
 				ul
 					li
-						a(href='#!')
+						a.scroll-link(href='#!' data-scroll='#about-block')
 							svg(xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', width='26', height='28', viewbox='0 0 26 28')
 								defs
 									path#xziqa(d='M266.57 116.14v1.6a2.2 2.2 0 0 1 1.43 2.06c0 1.21-.96 2.2-2.15 2.2a2.18 2.18 0 0 1-2.14-2.2c0-.95.6-1.77 1.43-2.07v-1.59h-17.28v1.6a2.2 2.2 0 0 1 1.43 2.06c0 1.21-.96 2.2-2.14 2.2a2.18 2.18 0 0 1-2.15-2.2c0-.95.6-1.77 1.43-2.07v-1.59H245v-1.46h1.43v-9.57c0-4.47 3.55-8.11 7.92-8.11h4.3a8.02 8.02 0 0 1 7.92 8.1v9.58H268v1.46zm-18.7 3.66c0-.4-.33-.73-.72-.73-.4 0-.72.33-.72.73 0 .4.32.73.72.73.4 0 .71-.32.71-.73zm14.4-13.96h-11.54v8.84h11.54zm-4.34-1.47v-1.46h-2.86v1.46zm7.2 10.3v-9.56a6.57 6.57 0 0 0-6.48-6.65h-4.3a6.57 6.57 0 0 0-6.49 6.65v9.57h1.43v-10.3h4.35v-2.94h5.72v2.93h4.35v10.3zm1.44 5.13c0-.4-.32-.73-.72-.73-.4 0-.71.33-.71.73 0 .4.32.73.71.73.4 0 .72-.32.72-.73z')
@@ -43,6 +44,9 @@
 										use(fill='#ffe7b2', xlink:href='#xziqa')
 
 							span VILLA CAMPARI
+
+						ul
+							li: a(href='#!') Последние события
 
 					li
 						a(href='#!')
@@ -62,6 +66,11 @@
 											use(fill='#0a2038', fill-opacity='.1', xlink:href='#e8msa')
 										use(fill='#ffe7b2', xlink:href='#e8msa')
 							span Виллы
+
+						ul
+							li: a(href='#!') Вилла 1
+							li: a(href='#!') Вилла 2
+							li: a(href='#!') Вилла 3
 
 					li
 						a(href='#!')
@@ -102,6 +111,11 @@
 										use(fill='#ffe7b2', xlink:href='#dzbua')
 
 							span Окружение
+						ul
+							li: a(href='#!') Вилла 1
+							li: a(href='#!') Вилла 2
+							li: a(href='#!') Вилла 3
+							li: a(href='#!') Вилла 4
 
 					li
 						a(href='#!')
@@ -122,6 +136,12 @@
 										use(fill='#ffe7b2', xlink:href='#s5caa')
 
 							span Спорт
+
+						ul
+							li: a(href='#!') Вилла 1
+							li: a(href='#!') Вилла 2
+							li: a(href='#!') Вилла 3
+							li: a(href='#!') Вилла 4
 
 					li
 						a(href='#!')

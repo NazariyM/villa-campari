@@ -1,0 +1,234 @@
+extends ../extend/default
+
+block variables
+	- var title = 'Номер';
+
+block main
+	main.content
+
+	//begin screen
+	+b.SECTION.screen._room
+		+e.container.container
+			+e.text
+				+e.title
+					h2 FAMILY VIEW SEA VILLA
+
+				+e.descr
+					+e.descr-field
+						p Семейная уютная Вилла с панорамным видом на море. Вы будете чувствовать себя, как дома.
+						p Двухэтажная вилла со всеми удобствами, двумя спальнямиспальнями с кондиционерами, кухней - гостиной с обеденной зоной и крытой террасой для отдыха и релакса на воздухе.
+					+e.descr-field
+						p Кухня оборудована холодильником, мультиваркой, СВЧ, чайником и необходимой посудой, также в аренду предоставляется гриль.
+					+e.descr-field
+						p Общая площадь 65кв.м. и вместимостью 6 человек (с возможностью размещения до 8 человек)
+
+		+e.img(style='background-image: url(static/img/bg/screen_bg-room.jpg)')
+		//end screen
+			
+	//begin room-offer
+	+b.SECTION.room-offer
+		+e.container.container
+			+e.row
+				+b.view-slider.room-offer__slider.room-offer__col
+					+e.nav
+						+e.nav-item
+							+e.IMG(src='static/img/content/view-sld_1.jpg' alt='image')
+						+e.nav-item
+							+e.IMG(src='static/img/content/view-sld_2.jpg' alt='image')
+						+e.nav-item
+							+e.IMG(src='static/img/content/view-sld_3.jpg' alt='image')
+						+e.nav-item
+							+e.IMG(src='static/img/content/view-sld_4.jpg' alt='image')
+						+e.nav-item
+							+e.IMG(src='static/img/content/view-sld_1.jpg' alt='image')
+						+e.nav-item
+							+e.IMG(src='static/img/content/view-sld_2.jpg' alt='image')
+					+e.for
+						+e.for-item
+							+e.IMG(src='static/img/content/view-sld_1-lg.jpg' alt='image')
+						+e.for-item
+							+e.IMG(src='static/img/content/view-sld_1-lg.jpg' alt='image')
+						+e.for-item
+							+e.IMG(src='static/img/content/view-sld_1-lg.jpg' alt='image')
+						+e.for-item
+							+e.IMG(src='static/img/content/view-sld_1-lg.jpg' alt='image')
+						+e.for-item
+							+e.IMG(src='static/img/content/view-sld_1-lg.jpg' alt='image')
+						+e.for-item
+							+e.IMG(src='static/img/content/view-sld_1-lg.jpg' alt='image')
+
+				+e.descr.room-offer__col
+					+e.descr-text
+						p Утонченный дизайнерский номер-студия с кроватью King Size и своей мини-кухней. Панорамное остекление позволяет любоваться морскими пейзажами непосредственно из номера.
+					+e.descr-info
+						+e.descr-price
+							span от 4 000 руб.
+						+e.A.descr-link(href='#!')
+							svg(xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', width='28', height='28', viewbox='0 0 28 28')
+								defs
+									path#563ra(d='M521 2173.46v19.88a3.67 3.67 0 0 1-3.66 3.66h-17.68a3.67 3.67 0 0 1-3.66-3.66V2172h19.14v1.46zm-6.59 22.07a3.64 3.64 0 0 1-.73-2.2v-19.87h-16.22v19.88c0 1.2.99 2.2 2.2 2.2zm5.13-20.6h-1.47v18.4h-1.46v-18.4h-1.47v18.4a2.2 2.2 0 0 0 4.4 0zm-7.33 0v4.4h-13.28v-4.4zm-1.46 1.46h-10.36v1.47h10.36zm-11.82 4.4h13.28v1.46h-13.28zm0 4.4h5.9v1.46h-5.9zm7.37 0h5.91v1.46h-5.9zm-7.37 2.92h5.9v1.47h-5.9zm7.37 0h5.91v1.47h-5.9zm-7.37 2.93h5.9v1.47h-5.9zm7.37 0h5.91v1.47h-5.9z')
+								g
+									g(transform='translate(-494 -2170)')
+										use(xlink:href='#563ra')
+
+							span Прайс-лист
+					+e.A.descr-btn.btn._red(href='#!')
+						span.btn__text оставить заявку
+					
+	//end room-offer
+
+	//begin benefits
+	+b.SECTION.benefits(style='background-image: url(static/img/bg/benefits_bg.jpg)')
+		+e.container.container
+			+e.inner
+				+e.item
+					+e.item-title.title-2
+						h3 Жилье
+
+					+e.item-content
+						+e.feature
+							+e.feature-icon
+								svg(xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', width='38', height='38', viewbox='0 0 38 38')
+									defs
+										path#rwp2a(d='M295 1278v35h-35v-35zm-2.05 2.05h-30.9v30.9h30.9zm-2.05 2.05v26.8h-26.8v-26.8zm-2.05 2.05h-22.7v22.7h22.7zm-2.05 2.05v18.6h-18.6v-18.6zm-14.5 6.16h-2.05v10.39h2.05zm0-4.1h-2.05v2.04h2.05zm4.17 4.1h-2.11v10.39h2.11zm0-4.1h-2.11v2.04h2.11zm8.28 10.32h-6.22v4.17h6.22zm0-6.22h-6.22v4.17h6.22zm0-4.1h-6.22v2.04h6.22z')
+									g
+										g(transform='translate(-258 -1276)')
+											use(fill='#e4181b', xlink:href='#rwp2a')
+
+							+e.feature-text
+								p Площадь номера: 35м2
+								p Вмещает гостей: 4
+								p Количество комнат: 1
+								p Количесво ванных комнат: 1
+								p Терраса: 20м2
+								p Вид: на море
+								p Обеденная зона
+
+					+e.item-line
+
+				+e.item
+					+e.item-title.title-2
+						h3 Удобства
+
+					+e.item-content
+						+e.feature
+							+e.feature-icon
+								svg(xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', width='38', height='38', viewbox='0 0 38 38')
+									defs
+										path#zv3pa(d='M580 1292.36V1313h-16.47v-20.64a8.15 8.15 0 0 1 4.12-7.11V1278h8.23v7.25a8.24 8.24 0 0 1 4.12 7.1zm-10.3-10.26h4.12v-2.05h-4.11zm-4.02 9.23h12.17a6.2 6.2 0 0 0-3.44-4.54l-.59-.27v-2.37h-4.11v2.37l-.6.27a6.2 6.2 0 0 0-3.43 4.54zm12.26 15.52H565.6v4.1h3.09v-2.05h2.06v2.05h2.05v-2.05h2.06v2.05h3.1zm0-13.47H565.6v11.42h12.35zm-16.47-1.02V1313H545v-20.64a8.15 8.15 0 0 1 4.12-7.11V1278h8.23v7.25a8.24 8.24 0 0 1 4.12 7.1zm-10.3-10.26h4.12v-2.05h-4.11zm-4.02 9.23h12.17a6.2 6.2 0 0 0-3.44-4.54l-.59-.27v-2.37h-4.11v2.37l-.6.27a6.2 6.2 0 0 0-3.43 4.54zm12.26 15.52h-12.35v4.1h3.09v-2.05h2.06v2.05h2.05v-2.05h2.06v2.05h3.1zm0-13.47h-12.35v11.42h12.35z')
+									g
+										g(transform='translate(-543 -1276)')
+											use(fill='#e4181b', xlink:href='#zv3pa')
+
+							+e.feature-text
+								p Мини-бар и кофемашина Nespresso
+
+						+e.feature
+							+e.feature-icon
+								svg(xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', width='38', height='33', viewbox='0 0 38 33')
+									defs
+										path#9l65a(d='M581 1361.79v5.21h-35v-5.21l3.08-5.98V1337h28.84v18.81zm-29.87-6.74h24.74V1339h-24.74zm-2.45 5.98h29.64l-2.06-3.99h-25.52zm13.8 1.99h-14.43v1.99h14.42zm16.47 0h-14.42v1.99h14.42zm-8.2-19.06l-1.45 1.41a8.27 8.27 0 0 0-5.8-2.33c-2.2 0-4.25.83-5.8 2.33l-1.45-1.4a10.34 10.34 0 0 1 7.25-2.92c2.74 0 5.31 1.03 7.25 2.91zm-2.9 2.82l-1.45 1.4a4.2 4.2 0 0 0-5.8 0l-1.45-1.4a6.29 6.29 0 0 1 8.7 0zm-2.3 4.22c0 1.1-.92 2-2.05 2s-2.05-.9-2.05-2 .92-1.99 2.05-1.99 2.05.9 2.05 2z')
+									g
+										g(transform='translate(-544 -1335)')
+											use(fill='#e4181b', xlink:href='#9l65a')
+
+							+e.feature-text
+								p Wi-fi, развлекательная система Bose и спутниковое телевидение с обширными списками фильмов по запросу.
+
+					+e.item-line
+
+				+e.item
+					+e.item-title.title-2
+						h3 спальные места
+
+					+e.item-content
+						+e.feature
+							+e.feature-icon
+								svg(xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', width='38', height='38', viewbox='0 0 38 38')
+									defs
+										path#d0y7a(d='M862 1279v35h-2.05v-2.05h-30.9v2.05H827v-35zm-2.05 22.7h-30.9v8.2h30.9zm0-5.27c0-1.7-1.38-3.07-3.08-3.07h-24.74a3.08 3.08 0 0 0-3.08 3.07v3.21h30.9zm-16.48-5.13v-6.15h-10.32v6.15zm12.38 0v-6.15h-10.32v6.15zm4.1-10.25h-30.9v11.28a5.1 5.1 0 0 1 2.05-.92v-8.3h26.8v8.3a5.1 5.1 0 0 1 2.05.92z')
+									g
+										g(transform='translate(-825 -1277)')
+											use(fill='#e4181b', xlink:href='#d0y7a')
+
+							+e.feature-text
+								p Две большие кондиционированные гостиные с большими диванами-кроватями и одна гостиная могут быть преобразованы во вторую спальню с двумя односмальными кроватями
+
+					+e.item-line
+
+				+e.item
+					+e.item-title.title-2
+						h3 заселение
+
+					+e.item-content
+						+e.feature
+							+e.feature-icon
+								svg(xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', width='38', height='39', viewbox='0 0 38 39')
+									defs
+										path#fol1a(d='M1141.74 1309.32c-.22.23-.45.45-.68.66l1.91 2.63-1.6 1.23-1.87-2.58a15.9 15.9 0 0 1-9.31 2.99 15.9 15.9 0 0 1-9.31-3l-1.88 2.59-1.6-1.23 1.91-2.63a16.96 16.96 0 0 1-5.46-12.55c0-2.15.39-4.24 1.14-6.19a7.34 7.34 0 0 1 .24-9.9 6.84 6.84 0 0 1 9.86 0l.07.08a15.95 15.95 0 0 1 10.06 0l.07-.07a6.84 6.84 0 0 1 9.86 0 7.34 7.34 0 0 1 .24 9.9 17.24 17.24 0 0 1-3.65 18.07zm-4.45-27.04a16.87 16.87 0 0 1 7.14 6.89 5.25 5.25 0 0 0-.7-6.37 4.88 4.88 0 0 0-6.44-.52zm-21.34 6.89a16.86 16.86 0 0 1 7.14-6.9 4.88 4.88 0 0 0-6.45.53 5.25 5.25 0 0 0-.69 6.37zm28.58 8.26c0-8.14-6.43-14.77-14.34-14.77s-14.35 6.63-14.35 14.77 6.44 14.77 14.35 14.77c7.9 0 14.34-6.63 14.34-14.77zm-1.99 0c0 7.01-5.54 12.72-12.35 12.72s-12.36-5.7-12.36-12.72c0-7.01 5.55-12.72 12.36-12.72 6.8 0 12.35 5.7 12.35 12.72zm-2 0c0-5.88-4.64-10.66-10.35-10.66-5.72 0-10.36 4.78-10.36 10.66s4.64 10.67 10.36 10.67c5.71 0 10.36-4.79 10.36-10.67zm-1.98-1.02v2.05h-9.37v-9.64h2v7.59z')
+									g
+										g(transform='translate(-1111 -1277)')
+											use(fill='#e4181b', xlink:href='#fol1a')
+
+							+e.feature-text._time
+								p Время заселения:
+									strong 14:00 - 22:00
+								p Время выезда:
+									strong 09:00 - 12:00
+	//end benefits
+
+	//begin conditions
+	+b.SECTION.conditions
+		+e.container.container
+			+e.block
+				+e.title.title-2
+					h2 Условия бронирования
+				+e.descr
+					p Настоящие Правила разработаны в соответствии с Постановлением Правительства РФ №490 от 25.04.1997г. В«Об утверждении правил предоставления гостиничных услуг в Российской ФедерацииВ», Законом РФ В«О защите прав потребителейВ», действующим законодательством РФ, а также Уставом предприятия и действующими Положениями на предприятии (далее Гостиница) и индивидуальными гостями либо группой гостей (далее Гости), использующими услуги Гостиницы для временного размещения в период пребывания в городе.
+
+	//end conditions
+
+	//begin reserve-now
+	+b.SECTION.reserve-now(style='background-image: url(static/img/bg/screen_bg.jpg)')
+		+e.container.container
+			+e.title.title-2
+				h2 ЗАБРОНИРУЙ НОМЕР УЖЕ СЕЙЧАС
+			+e.form-wrap
+				+e.FORM.form(action='#!' method='POST')
+					+e.form-field
+						+e.INPUT.form-input(type='text' placeholder='Ваше ФИО' name='' required)
+					+e.form-field._double
+						+e.form-col
+							+e.form-field
+								+e.INPUT.form-input(type='text' placeholder='Номер телефона' name='' required)
+						+e.form-col
+							+e.form-field
+								+e.INPUT.form-input(type='text' placeholder='Ваш e-mail' name='' required)
+
+					+e.form-field
+						+e.INPUT.form-input(type='text' placeholder='Ваш комментарий' name='' required)
+
+					+e.form-submit
+						+e.INPUT.form-submit-btn.btn._yellow(type='submit' value='ОТПРАВИТЬ ЗАЯВКУ')
+
+	//end reserve-now
+
+	-viewBlock = {classMod: '_events', title: 'Последние события'}
+	-
+		viewList = [{
+			img: 1,
+			date: '22.03.2018',
+			descr: 'Двухэтажная просторная вилла со всеми удобствами, двумя спальнями с кондиционерами',
+			btnClass: '_yellow'
+			}, {
+			img: 2,
+			date: '22.03.2018',
+			descr: 'Одна из самых больших  панорамных Вилл, с которой открывается изумительный вид на бирюзовую гладь моря, Русскую бухту и заповедник Казантип.',
+			btnClass: '_yellow'
+			}, {
+			img: 3,
+			date: '22.03.2018',
+			descr: 'Двухэтажная просторная вилла со всеми удобствами, двумя спальнями с кондиционерами',
+			btnClass: '_yellow'
+		}]
+	include ../components/view-block

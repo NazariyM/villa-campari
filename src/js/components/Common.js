@@ -4,6 +4,7 @@ import './NoTouch';
 
 import './preloader';
 import '../components/Anims';
+import '../components/Popup';
 import '../pages/sections/Screen';
 import '../pages/sections/AboutBlock';
 import '../pages/sections/Restaurant';
@@ -15,8 +16,7 @@ import './Header';
 import './c-tabs';
 import './Slider';
 import './Dot';
-
-// import './ContactMap';
+import './ContactMap';
 
 export class Common {
   /**

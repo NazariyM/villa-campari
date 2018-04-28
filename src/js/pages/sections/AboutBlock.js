@@ -90,4 +90,4 @@ class AboutBlock {
 
 }
 
-export const AboutBlockAPI = new AboutBlock();
+// export const AboutBlockAPI = new AboutBlock();
