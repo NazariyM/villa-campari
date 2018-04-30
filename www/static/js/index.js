@@ -33262,6 +33262,8 @@ exports.AboutBlockAPI = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _helpers = __webpack_require__(30);
+
 var _gsap = __webpack_require__(18);
 
 var _SplitText = __webpack_require__(95);
@@ -33402,7 +33404,11 @@ var AboutBlock = function () {
             opacity: 1,
             transform: 'translateX(0px) skew(0deg)',
             filter: 'blur(0px)'
-          }, .02, .8);
+          }, .02, .8).add(function () {
+            if (_helpers.Resp.isMobile) {
+              _this3.titleSplit.revert();
+            }
+          });
         }
 
         // descr & img

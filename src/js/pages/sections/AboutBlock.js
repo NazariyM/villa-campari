@@ -1,3 +1,4 @@
+import { Resp } from '../../modules/dev/_helpers';
 import { TimelineMax } from 'gsap';
 import SplitText from '../../modules/dep/SplitText';
 import ScrollAnim from '../../modules/dev/animation/scrollAnim';
@@ -72,7 +73,12 @@ class AboutBlock {
           opacity: 1,
           transform: 'translateX(0px) skew(0deg)',
           filter: 'blur(0px)'
-        }, .02, .8);
+        }, .02, .8)
+        .add(() => {
+          if (Resp.isMobile) {
+            this.titleSplit.revert();
+          }
+        });
     }
 
     // descr & img
