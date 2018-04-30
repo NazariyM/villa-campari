@@ -5,6 +5,7 @@ import ScrollAnim from '../../modules/dev/animation/scrollAnim';
 class AboutBlock {
   constructor () {
     this.block = document.querySelector('.about-block');
+    if (!this.block) return;
     this.title = this.block.querySelector('.about-block__title');
     this.descr = this.block.querySelector('.about-block__descr');
     this.img = this.block.querySelector('.about-block__img');
@@ -90,4 +91,4 @@ class AboutBlock {
 
 }
 
-// export const AboutBlockAPI = new AboutBlock();
+export const AboutBlockAPI = new AboutBlock();

@@ -29,7 +29,7 @@ block main
 	+b.SECTION.room-offer
 		+e.container.container
 			+e.row
-				+b.view-slider.room-offer__slider.room-offer__col
+				+b.view-slider.room-offer__slider.room-offer__col(data-anim='fade-x')
 					+e.nav
 						+e.nav-item
 							+e.IMG(src='static/img/content/view-sld_1.jpg' alt='image')
@@ -57,7 +57,7 @@ block main
 						+e.for-item
 							+e.IMG(src='static/img/content/view-sld_1-lg.jpg' alt='image')
 
-				+e.descr.room-offer__col
+				+e.descr.room-offer__col(data-anim='fade-x')
 					+e.descr-text
 						p Утонченный дизайнерский номер-студия с кроватью King Size и своей мини-кухней. Панорамное остекление позволяет любоваться морскими пейзажами непосредственно из номера.
 					+e.descr-info
@@ -80,7 +80,7 @@ block main
 	//begin benefits
 	+b.SECTION.benefits(style='background-image: url(static/img/bg/benefits_bg.jpg)')
 		+e.container.container
-			+e.inner
+			+e.inner(data-anim-stagger='fade-y')
 				+e.item
 					+e.item-title.title-2
 						h3 Жилье
@@ -178,7 +178,7 @@ block main
 	//end benefits
 
 	//begin conditions
-	+b.SECTION.conditions
+	+b.SECTION.conditions(data-anim='fade-y' data-anim-duration='1')
 		+e.container.container
 			+e.block
 				+e.title.title-2
@@ -191,9 +191,9 @@ block main
 	//begin reserve-now
 	+b.SECTION.reserve-now(style='background-image: url(static/img/bg/screen_bg.jpg)')
 		+e.container.container
-			+e.title.title-2
+			+e.title.title-2(data-anim='fade-y')
 				h2 ЗАБРОНИРУЙ НОМЕР УЖЕ СЕЙЧАС
-			+e.form-wrap
+			+e.form-wrap(data-anim='fade-y' data-anim-delay='0.5')
 				+e.FORM.form(action='#!' method='POST')
 					+e.form-field
 						+e.INPUT.form-input(type='text' placeholder='Ваше ФИО' name='' required)
