@@ -10404,6 +10404,8 @@ var _helpers = __webpack_require__(28);
 
 var _gsap = __webpack_require__(18);
 
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Preloader = function () {
@@ -10421,13 +10423,32 @@ var Preloader = function () {
 
   _createClass(Preloader, [{
     key: 'init',
-    value: function init() {
-      this.animate();
+    value: function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.animate();
 
-      _helpers.$window.on('beforeunload', function () {
-        _helpers.$scrolledElements.scrollTop(0);
-      });
-    }
+                _helpers.$window.on('beforeunload', function () {
+                  _helpers.$scrolledElements.scrollTop(0);
+                });
+
+              case 2:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function init() {
+        return _ref.apply(this, arguments);
+      }
+
+      return init;
+    }()
   }, {
     key: 'wait',
     value: function wait() {
@@ -10438,8 +10459,14 @@ var Preloader = function () {
     value: function animate() {
       var _this = this;
 
+      console.log('revert');
       this.resolve = new Promise(function (resolve) {
-        var tl = new _gsap.TimelineMax();
+
+        var tl = new _gsap.TimelineMax({
+          onComplete: function onComplete() {
+            resolve();
+          }
+        });
 
         tl.to(_this.$blockTop, 0.75, {
           y: '-100%',
@@ -10455,9 +10482,7 @@ var Preloader = function () {
           ease: Power4.easeInOut
         }, 'verticalEnd').set(_this.$block, { css: {
             display: 'none'
-          } }).add(function () {
-          resolve();
-        });
+          } });
       });
     }
   }]);
