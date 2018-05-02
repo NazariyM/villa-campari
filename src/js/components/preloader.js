@@ -12,7 +12,7 @@ class Preloader {
     this.init();
   }
 
-  init() {
+  async init() {
     this.animate();
 
     $window.on('beforeunload', () => {
@@ -25,8 +25,14 @@ class Preloader {
   }
 
   animate() {
+    console.log('revert');
     this.resolve = new Promise(resolve => {
-      const tl = new TimelineMax();
+
+      const tl = new TimelineMax({
+        onComplete() {
+          resolve();
+        }
+      });
 
       tl
         .to(this.$blockTop, 0.75, {
@@ -48,9 +54,7 @@ class Preloader {
         }, 'verticalEnd')
         .set(this.$block, { css: {
             display: 'none'
-          } }).add(() => {
-        resolve();
-      });
+          } });
     });
   }
 }
