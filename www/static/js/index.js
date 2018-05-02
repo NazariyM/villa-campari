@@ -8536,6 +8536,410 @@ module.exports = function (TYPE, $create) {
 
 "use strict";
 
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+var _arguments = arguments;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Commonly used constants and functions.
+ *
+ * @module Helpers
+ */
+
+/**
+ * Cache body DOM element.
+ *
+ * @constant
+ * @type {jQuery}
+ */
+var $body = exports.$body = $('body');
+
+/**
+ * Cache main DOM element.
+ *
+ * @constant
+ * @type {jQuery}
+ */
+var $main = exports.$main = $('main');
+
+/**
+ * Cache document.
+ *
+ * @constant
+ * @type {jQuery}
+ */
+var $document = exports.$document = $(document);
+
+/**
+ * Cache window.
+ *
+ * @constant
+ * @type {jQuery}
+ */
+var $window = exports.$window = $(window);
+
+/**
+ * Cache header.
+ *
+ * @constant
+ * @type {jQuery}
+ */
+var $header = exports.$header = $('header');
+
+/**
+ * Cache footer.
+ *
+ * @constant
+ * @type {jQuery}
+ */
+var $footer = exports.$footer = $('footer');
+
+/**
+ * Elements for cross-browser window scroll.
+ *
+ * @constant
+ * @type {jQuery}
+ */
+var $scrolledElements = exports.$scrolledElements = $('html, body');
+
+/**
+ * Window width.
+ *
+ * @constant
+ * @type {Number}
+ */
+var winWidth = exports.winWidth = $window.width();
+
+/**
+ * Detect current page.
+ *
+ * @constant
+ * @type {String}
+ */
+var currentPage = exports.currentPage = $body.find('main').data('page');
+
+/**
+ * Toggle class on specified element on click.
+ *
+ * @param {jQuery} clickHandler
+ * @param {jQuery} element
+ * @param {String} [className='active']
+ */
+var toggleClass = exports.toggleClass = function toggleClass(clickHandler, element) {
+	var className = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : css.active;
+
+	clickHandler.on('click tap', function () {
+		return element.toggleClass(className);
+	});
+};
+
+/**
+ * Check if element is in viewport.
+ *
+ * @param {jQuery} $element
+ * @param {Boolean} [fullyInView = false] - element should be fully in viewport?
+ * @param {Number} [offsetTop = 0]
+ * @returns {Boolean}
+ */
+var isScrolledIntoView = exports.isScrolledIntoView = function isScrolledIntoView($element) {
+	var offsetTop = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+	var fullyInView = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+	var pageTop = $window.scrollTop();
+	var pageBottom = pageTop + $window.height();
+	var elementTop = $element.offset().top;
+	var elementBottom = elementTop + $element.height();
+
+	if (fullyInView) return pageTop < elementTop && pageBottom > elementBottom;
+
+	return elementTop + offsetTop <= pageBottom && elementBottom >= pageTop;
+};
+
+/**
+ * Check specified item to be target of the event.
+ *
+ * @param {Object} e - Event object.
+ * @param {jQuery} item - Item to compare with.
+ * @returns {Boolean} - Indicate whether clicked target is the specified item or not.
+ */
+var checkClosest = exports.checkClosest = function checkClosest(e, item) {
+	return $(e.target).closest(item).length > 0;
+};
+
+/**
+ * Match media device indicator.
+ */
+
+var Resp = exports.Resp = function () {
+	function Resp() {
+		_classCallCheck(this, Resp);
+	}
+
+	_createClass(Resp, null, [{
+		key: 'currWidth',
+
+		/**
+   * Get window's current width.
+   *
+   * @get
+   * @static
+   * @return {Number}
+   */
+		get: function get() {
+			return window.innerWidth;
+		}
+
+		/**
+   * Detect touch events.
+   *
+   * @get
+   * @static
+   * @return {Boolean}
+   */
+
+	}, {
+		key: 'isTouch',
+		get: function get() {
+			return 'ontouchstart' in window;
+		}
+
+		/**
+   * Detect desktop device.
+   *
+   * @get
+   * @static
+   * @return {Boolean}
+   */
+
+	}, {
+		key: 'isDesk',
+		get: function get() {
+			return window.matchMedia('(min-width: 1199px)').matches;
+		}
+	}, {
+		key: 'isMobiles',
+		get: function get() {
+			return window.matchMedia('(max-width: 1023px)').matches;
+		}
+
+		/**
+   * Detect tablet device.
+   *
+   * @get
+   * @static
+   * @return {Boolean}
+   */
+
+	}, {
+		key: 'isTablet',
+		get: function get() {
+			return window.matchMedia('(min-width: 768px) and (max-width: 1199px)').matches;
+		}
+
+		/**
+   * Detect mobile device.
+   *
+   * @get
+   * @static
+   * @return {Boolean}
+   */
+
+	}, {
+		key: 'isMobile',
+		get: function get() {
+			return window.matchMedia('(max-width: 767px)').matches;
+		}
+
+		/**
+   * Detect mobile device orientation.
+   *
+   * @get
+   * @static
+   * @return {Boolean}
+   */
+
+	}, {
+		key: 'isPortrait',
+		get: function get() {
+			return window.matchMedia('(orientation: portrait)').matches;
+		}
+	}]);
+
+	return Resp;
+}();
+
+/**
+ * Css class names.
+ *
+ * @constant
+ * @type {Object}
+ */
+
+
+var css = exports.css = {
+	noTouch: 'no-touch',
+	reload: 'is-reload',
+	active: 'is-active',
+	visible: 'is-visible',
+	hidden: 'is-hidden',
+	cursor: 'is-cursor',
+	hasAnim: 'has-anim',
+	small: 'is-small',
+	medium: 'is-medium',
+	left: 'is-left',
+	right: 'is-right',
+	disabled: 'is-disabled',
+	mark: 'is-mark',
+	overflow: 'is-overflow',
+	dark: 'is-dark',
+	transitionOff: 'transition-off',
+	relative: 'is-relative',
+	hide: 'is-hide',
+	bg: 'is-bg',
+	playing: 'is-playing',
+	fill: 'is-fill',
+	selected: 'is-selected',
+	fixed: 'is-fixed',
+	locked: 'is-locked',
+	error: 'has-error',
+	noTransition: 'no-transition',
+	menuActive: 'menu-active',
+	animsDisabled: 'anims-disabled'
+};
+
+/**
+ * Generate string of random letters.
+ *
+ * @param {Number} length
+ */
+var randomString = exports.randomString = function randomString() {
+	var length = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 10;
+	return Math.random().toString(36).substr(2, length);
+};
+
+/**
+ * Returns a function, that, as long as it continues to be invoked, will not be triggered.
+ *
+ * @param {Function} func
+ * @param {Object} context
+ * @param {Number} wait
+ * @param {Boolean} [immediate]
+ * @returns {Function}
+ */
+var debounce = exports.debounce = function debounce(func, context, wait, immediate) {
+	var timeout = void 0;
+
+	return function () {
+		var args = _arguments;
+
+		var later = function later() {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+
+		var callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
+};
+
+/**
+ * Throttle function.
+ *
+ * @param {Function} fn
+ * @param {Number} [threshold]
+ * @param {Object} [scope]
+ * @returns {Function}
+ */
+var throttle = exports.throttle = function throttle(fn) {
+	var threshold = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 250;
+	var scope = arguments[2];
+
+	var last = void 0,
+	    deferTimer = void 0;
+
+	return function () {
+		var context = scope || this;
+		var now = +new Date();
+		var args = arguments;
+
+		if (last && now < last + threshold) {
+			clearTimeout(deferTimer);
+			deferTimer = setTimeout(function () {
+				last = now;
+				fn.apply(context, args);
+			}, threshold);
+		} else {
+			last = now;
+			fn.apply(context, args);
+		}
+	};
+};
+
+/**
+ * Converts a hex color number to 16 number
+ *
+ * @param hex {String}
+ * @return {Number}
+ */
+var hex2number = exports.hex2number = function hex2number(hex) {
+	return parseInt(hex.substring(1), 16);
+};
+
+/**
+ * Get a random integer between `min` and `max`.
+ *
+ * @param {number} min - min number
+ * @param {number} max - max number
+ * @return {int} a random integer
+ */
+var getRandomInt = exports.getRandomInt = function getRandomInt(min, max) {
+	return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+/**
+ * detect IE
+ * returns version of IE or false, if browser is not Internet Explorer
+ */
+var detectIE = exports.detectIE = function detectIE() {
+	var ua = window.navigator.userAgent;
+
+	var msie = ua.indexOf('MSIE ');
+	if (msie > 0) {
+		// IE 10 or older => return version number
+		return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+	}
+
+	var trident = ua.indexOf('Trident/');
+	if (trident > 0) {
+		// IE 11 => return version number
+		var rv = ua.indexOf('rv:');
+		return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
+	}
+
+	var edge = ua.indexOf('Edge/');
+	if (edge > 0) {
+		// Edge (IE 12+) => return version number
+		return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
+	}
+
+	// other browser
+	return false;
+};
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 if (__webpack_require__(6)) {
   var LIBRARY = __webpack_require__(36);
   var global = __webpack_require__(2);
@@ -9018,7 +9422,7 @@ if (__webpack_require__(6)) {
 
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Map = __webpack_require__(118);
@@ -9075,410 +9479,6 @@ module.exports = {
 
 
 /***/ }),
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-var _arguments = arguments;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * Commonly used constants and functions.
- *
- * @module Helpers
- */
-
-/**
- * Cache body DOM element.
- *
- * @constant
- * @type {jQuery}
- */
-var $body = exports.$body = $('body');
-
-/**
- * Cache main DOM element.
- *
- * @constant
- * @type {jQuery}
- */
-var $main = exports.$main = $('main');
-
-/**
- * Cache document.
- *
- * @constant
- * @type {jQuery}
- */
-var $document = exports.$document = $(document);
-
-/**
- * Cache window.
- *
- * @constant
- * @type {jQuery}
- */
-var $window = exports.$window = $(window);
-
-/**
- * Cache header.
- *
- * @constant
- * @type {jQuery}
- */
-var $header = exports.$header = $('header');
-
-/**
- * Cache footer.
- *
- * @constant
- * @type {jQuery}
- */
-var $footer = exports.$footer = $('footer');
-
-/**
- * Elements for cross-browser window scroll.
- *
- * @constant
- * @type {jQuery}
- */
-var $scrolledElements = exports.$scrolledElements = $('html, body');
-
-/**
- * Window width.
- *
- * @constant
- * @type {Number}
- */
-var winWidth = exports.winWidth = $window.width();
-
-/**
- * Detect current page.
- *
- * @constant
- * @type {String}
- */
-var currentPage = exports.currentPage = $body.find('main').data('page');
-
-/**
- * Toggle class on specified element on click.
- *
- * @param {jQuery} clickHandler
- * @param {jQuery} element
- * @param {String} [className='active']
- */
-var toggleClass = exports.toggleClass = function toggleClass(clickHandler, element) {
-	var className = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : css.active;
-
-	clickHandler.on('click tap', function () {
-		return element.toggleClass(className);
-	});
-};
-
-/**
- * Check if element is in viewport.
- *
- * @param {jQuery} $element
- * @param {Boolean} [fullyInView = false] - element should be fully in viewport?
- * @param {Number} [offsetTop = 0]
- * @returns {Boolean}
- */
-var isScrolledIntoView = exports.isScrolledIntoView = function isScrolledIntoView($element) {
-	var offsetTop = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-	var fullyInView = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-
-	var pageTop = $window.scrollTop();
-	var pageBottom = pageTop + $window.height();
-	var elementTop = $element.offset().top;
-	var elementBottom = elementTop + $element.height();
-
-	if (fullyInView) return pageTop < elementTop && pageBottom > elementBottom;
-
-	return elementTop + offsetTop <= pageBottom && elementBottom >= pageTop;
-};
-
-/**
- * Check specified item to be target of the event.
- *
- * @param {Object} e - Event object.
- * @param {jQuery} item - Item to compare with.
- * @returns {Boolean} - Indicate whether clicked target is the specified item or not.
- */
-var checkClosest = exports.checkClosest = function checkClosest(e, item) {
-	return $(e.target).closest(item).length > 0;
-};
-
-/**
- * Match media device indicator.
- */
-
-var Resp = exports.Resp = function () {
-	function Resp() {
-		_classCallCheck(this, Resp);
-	}
-
-	_createClass(Resp, null, [{
-		key: 'currWidth',
-
-		/**
-   * Get window's current width.
-   *
-   * @get
-   * @static
-   * @return {Number}
-   */
-		get: function get() {
-			return window.innerWidth;
-		}
-
-		/**
-   * Detect touch events.
-   *
-   * @get
-   * @static
-   * @return {Boolean}
-   */
-
-	}, {
-		key: 'isTouch',
-		get: function get() {
-			return 'ontouchstart' in window;
-		}
-
-		/**
-   * Detect desktop device.
-   *
-   * @get
-   * @static
-   * @return {Boolean}
-   */
-
-	}, {
-		key: 'isDesk',
-		get: function get() {
-			return window.matchMedia('(min-width: 1199px)').matches;
-		}
-	}, {
-		key: 'isMobiles',
-		get: function get() {
-			return window.matchMedia('(max-width: 1023px)').matches;
-		}
-
-		/**
-   * Detect tablet device.
-   *
-   * @get
-   * @static
-   * @return {Boolean}
-   */
-
-	}, {
-		key: 'isTablet',
-		get: function get() {
-			return window.matchMedia('(min-width: 768px) and (max-width: 1199px)').matches;
-		}
-
-		/**
-   * Detect mobile device.
-   *
-   * @get
-   * @static
-   * @return {Boolean}
-   */
-
-	}, {
-		key: 'isMobile',
-		get: function get() {
-			return window.matchMedia('(max-width: 767px)').matches;
-		}
-
-		/**
-   * Detect mobile device orientation.
-   *
-   * @get
-   * @static
-   * @return {Boolean}
-   */
-
-	}, {
-		key: 'isPortrait',
-		get: function get() {
-			return window.matchMedia('(orientation: portrait)').matches;
-		}
-	}]);
-
-	return Resp;
-}();
-
-/**
- * Css class names.
- *
- * @constant
- * @type {Object}
- */
-
-
-var css = exports.css = {
-	noTouch: 'no-touch',
-	reload: 'is-reload',
-	active: 'is-active',
-	visible: 'is-visible',
-	hidden: 'is-hidden',
-	cursor: 'is-cursor',
-	hasAnim: 'has-anim',
-	small: 'is-small',
-	medium: 'is-medium',
-	left: 'is-left',
-	right: 'is-right',
-	disabled: 'is-disabled',
-	mark: 'is-mark',
-	overflow: 'is-overflow',
-	dark: 'is-dark',
-	transitionOff: 'transition-off',
-	relative: 'is-relative',
-	hide: 'is-hide',
-	bg: 'is-bg',
-	playing: 'is-playing',
-	fill: 'is-fill',
-	selected: 'is-selected',
-	fixed: 'is-fixed',
-	locked: 'is-locked',
-	error: 'has-error',
-	noTransition: 'no-transition',
-	menuActive: 'menu-active',
-	animsDisabled: 'anims-disabled'
-};
-
-/**
- * Generate string of random letters.
- *
- * @param {Number} length
- */
-var randomString = exports.randomString = function randomString() {
-	var length = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 10;
-	return Math.random().toString(36).substr(2, length);
-};
-
-/**
- * Returns a function, that, as long as it continues to be invoked, will not be triggered.
- *
- * @param {Function} func
- * @param {Object} context
- * @param {Number} wait
- * @param {Boolean} [immediate]
- * @returns {Function}
- */
-var debounce = exports.debounce = function debounce(func, context, wait, immediate) {
-	var timeout = void 0;
-
-	return function () {
-		var args = _arguments;
-
-		var later = function later() {
-			timeout = null;
-			if (!immediate) func.apply(context, args);
-		};
-
-		var callNow = immediate && !timeout;
-		clearTimeout(timeout);
-		timeout = setTimeout(later, wait);
-		if (callNow) func.apply(context, args);
-	};
-};
-
-/**
- * Throttle function.
- *
- * @param {Function} fn
- * @param {Number} [threshold]
- * @param {Object} [scope]
- * @returns {Function}
- */
-var throttle = exports.throttle = function throttle(fn) {
-	var threshold = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 250;
-	var scope = arguments[2];
-
-	var last = void 0,
-	    deferTimer = void 0;
-
-	return function () {
-		var context = scope || this;
-		var now = +new Date();
-		var args = arguments;
-
-		if (last && now < last + threshold) {
-			clearTimeout(deferTimer);
-			deferTimer = setTimeout(function () {
-				last = now;
-				fn.apply(context, args);
-			}, threshold);
-		} else {
-			last = now;
-			fn.apply(context, args);
-		}
-	};
-};
-
-/**
- * Converts a hex color number to 16 number
- *
- * @param hex {String}
- * @return {Number}
- */
-var hex2number = exports.hex2number = function hex2number(hex) {
-	return parseInt(hex.substring(1), 16);
-};
-
-/**
- * Get a random integer between `min` and `max`.
- *
- * @param {number} min - min number
- * @param {number} max - max number
- * @return {int} a random integer
- */
-var getRandomInt = exports.getRandomInt = function getRandomInt(min, max) {
-	return Math.floor(Math.random() * (max - min + 1) + min);
-};
-
-/**
- * detect IE
- * returns version of IE or false, if browser is not Internet Explorer
- */
-var detectIE = exports.detectIE = function detectIE() {
-	var ua = window.navigator.userAgent;
-
-	var msie = ua.indexOf('MSIE ');
-	if (msie > 0) {
-		// IE 10 or older => return version number
-		return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
-	}
-
-	var trident = ua.indexOf('Trident/');
-	if (trident > 0) {
-		// IE 11 => return version number
-		var rv = ua.indexOf('rv:');
-		return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
-	}
-
-	var edge = ua.indexOf('Edge/');
-	if (edge > 0) {
-		// Edge (IE 12+) => return version number
-		return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
-	}
-
-	// other browser
-	return false;
-};
-
-/***/ }),
 /* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9495,7 +9495,7 @@ var _Scrollmagic = __webpack_require__(339);
 
 var _Scrollmagic2 = _interopRequireDefault(_Scrollmagic);
 
-var _helpers = __webpack_require__(30);
+var _helpers = __webpack_require__(28);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -10400,11 +10400,9 @@ exports.preloader = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _helpers = __webpack_require__(30);
+var _helpers = __webpack_require__(28);
 
 var _gsap = __webpack_require__(18);
-
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -10423,32 +10421,13 @@ var Preloader = function () {
 
   _createClass(Preloader, [{
     key: 'init',
-    value: function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-        return regeneratorRuntime.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                this.animate();
+    value: function init() {
+      this.animate();
 
-                _helpers.$window.on('beforeunload', function () {
-                  _helpers.$scrolledElements.scrollTop(0);
-                });
-
-              case 2:
-              case 'end':
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function init() {
-        return _ref.apply(this, arguments);
-      }
-
-      return init;
-    }()
+      _helpers.$window.on('beforeunload', function () {
+        _helpers.$scrolledElements.scrollTop(0);
+      });
+    }
   }, {
     key: 'wait',
     value: function wait() {
@@ -10460,12 +10439,7 @@ var Preloader = function () {
       var _this = this;
 
       this.resolve = new Promise(function (resolve) {
-
-        var tl = new _gsap.TimelineMax({
-          onComplete: function onComplete() {
-            resolve();
-          }
-        });
+        var tl = new _gsap.TimelineMax();
 
         tl.to(_this.$blockTop, 0.75, {
           y: '-100%',
@@ -10481,7 +10455,9 @@ var Preloader = function () {
           ease: Power4.easeInOut
         }, 'verticalEnd').set(_this.$block, { css: {
             display: 'none'
-          } });
+          } }).add(function () {
+          resolve();
+        });
       });
     }
   }]);
@@ -23297,7 +23273,7 @@ var _Home = __webpack_require__(357);
 
 var _Home2 = _interopRequireDefault(_Home);
 
-var _helpers = __webpack_require__(30);
+var _helpers = __webpack_require__(28);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26220,7 +26196,7 @@ $export($export.G + $export.W + $export.F * !__webpack_require__(63).ABV, {
 /* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(28)('Int8', 1, function (init) {
+__webpack_require__(29)('Int8', 1, function (init) {
   return function Int8Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -26231,7 +26207,7 @@ __webpack_require__(28)('Int8', 1, function (init) {
 /* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(28)('Uint8', 1, function (init) {
+__webpack_require__(29)('Uint8', 1, function (init) {
   return function Uint8Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -26242,7 +26218,7 @@ __webpack_require__(28)('Uint8', 1, function (init) {
 /* 250 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(28)('Uint8', 1, function (init) {
+__webpack_require__(29)('Uint8', 1, function (init) {
   return function Uint8ClampedArray(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -26253,7 +26229,7 @@ __webpack_require__(28)('Uint8', 1, function (init) {
 /* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(28)('Int16', 2, function (init) {
+__webpack_require__(29)('Int16', 2, function (init) {
   return function Int16Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -26264,7 +26240,7 @@ __webpack_require__(28)('Int16', 2, function (init) {
 /* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(28)('Uint16', 2, function (init) {
+__webpack_require__(29)('Uint16', 2, function (init) {
   return function Uint16Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -26275,7 +26251,7 @@ __webpack_require__(28)('Uint16', 2, function (init) {
 /* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(28)('Int32', 4, function (init) {
+__webpack_require__(29)('Int32', 4, function (init) {
   return function Int32Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -26286,7 +26262,7 @@ __webpack_require__(28)('Int32', 4, function (init) {
 /* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(28)('Uint32', 4, function (init) {
+__webpack_require__(29)('Uint32', 4, function (init) {
   return function Uint32Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -26297,7 +26273,7 @@ __webpack_require__(28)('Uint32', 4, function (init) {
 /* 255 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(28)('Float32', 4, function (init) {
+__webpack_require__(29)('Float32', 4, function (init) {
   return function Float32Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -26308,7 +26284,7 @@ __webpack_require__(28)('Float32', 4, function (init) {
 /* 256 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(28)('Float64', 8, function (init) {
+__webpack_require__(29)('Float64', 8, function (init) {
   return function Float64Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -27355,7 +27331,7 @@ $export($export.S, 'Promise', { 'try': function (callbackfn) {
 /* 316 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata = __webpack_require__(29);
+var metadata = __webpack_require__(30);
 var anObject = __webpack_require__(1);
 var toMetaKey = metadata.key;
 var ordinaryDefineOwnMetadata = metadata.set;
@@ -27369,7 +27345,7 @@ metadata.exp({ defineMetadata: function defineMetadata(metadataKey, metadataValu
 /* 317 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata = __webpack_require__(29);
+var metadata = __webpack_require__(30);
 var anObject = __webpack_require__(1);
 var toMetaKey = metadata.key;
 var getOrCreateMetadataMap = metadata.map;
@@ -27390,7 +27366,7 @@ metadata.exp({ deleteMetadata: function deleteMetadata(metadataKey, target /* , 
 /* 318 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata = __webpack_require__(29);
+var metadata = __webpack_require__(30);
 var anObject = __webpack_require__(1);
 var getPrototypeOf = __webpack_require__(17);
 var ordinaryHasOwnMetadata = metadata.has;
@@ -27415,7 +27391,7 @@ metadata.exp({ getMetadata: function getMetadata(metadataKey, target /* , target
 
 var Set = __webpack_require__(120);
 var from = __webpack_require__(129);
-var metadata = __webpack_require__(29);
+var metadata = __webpack_require__(30);
 var anObject = __webpack_require__(1);
 var getPrototypeOf = __webpack_require__(17);
 var ordinaryOwnMetadataKeys = metadata.keys;
@@ -27438,7 +27414,7 @@ metadata.exp({ getMetadataKeys: function getMetadataKeys(target /* , targetKey *
 /* 320 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata = __webpack_require__(29);
+var metadata = __webpack_require__(30);
 var anObject = __webpack_require__(1);
 var ordinaryGetOwnMetadata = metadata.get;
 var toMetaKey = metadata.key;
@@ -27453,7 +27429,7 @@ metadata.exp({ getOwnMetadata: function getOwnMetadata(metadataKey, target /* , 
 /* 321 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata = __webpack_require__(29);
+var metadata = __webpack_require__(30);
 var anObject = __webpack_require__(1);
 var ordinaryOwnMetadataKeys = metadata.keys;
 var toMetaKey = metadata.key;
@@ -27467,7 +27443,7 @@ metadata.exp({ getOwnMetadataKeys: function getOwnMetadataKeys(target /* , targe
 /* 322 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata = __webpack_require__(29);
+var metadata = __webpack_require__(30);
 var anObject = __webpack_require__(1);
 var getPrototypeOf = __webpack_require__(17);
 var ordinaryHasOwnMetadata = metadata.has;
@@ -27489,7 +27465,7 @@ metadata.exp({ hasMetadata: function hasMetadata(metadataKey, target /* , target
 /* 323 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata = __webpack_require__(29);
+var metadata = __webpack_require__(30);
 var anObject = __webpack_require__(1);
 var ordinaryHasOwnMetadata = metadata.has;
 var toMetaKey = metadata.key;
@@ -27504,7 +27480,7 @@ metadata.exp({ hasOwnMetadata: function hasOwnMetadata(metadataKey, target /* , 
 /* 324 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var $metadata = __webpack_require__(29);
+var $metadata = __webpack_require__(30);
 var anObject = __webpack_require__(1);
 var aFunction = __webpack_require__(10);
 var toMetaKey = $metadata.key;
@@ -29928,7 +29904,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _helpers = __webpack_require__(30);
+var _helpers = __webpack_require__(28);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -33262,7 +33238,7 @@ exports.AboutBlockAPI = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _helpers = __webpack_require__(30);
+var _helpers = __webpack_require__(28);
 
 var _gsap = __webpack_require__(18);
 
@@ -33817,7 +33793,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _gsap = __webpack_require__(18);
 
-var _helpers = __webpack_require__(30);
+var _helpers = __webpack_require__(28);
 
 var _preloader = __webpack_require__(67);
 
@@ -33928,7 +33904,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _gsap = __webpack_require__(18);
 
-var _helpers = __webpack_require__(30);
+var _helpers = __webpack_require__(28);
 
 var _scrollAnim = __webpack_require__(31);
 
@@ -34094,7 +34070,7 @@ exports.sliderAPI = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _helpers = __webpack_require__(30);
+var _helpers = __webpack_require__(28);
 
 var _scrollAnim = __webpack_require__(31);
 
@@ -37233,7 +37209,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 __webpack_require__(354);
 
-var _helpers = __webpack_require__(30);
+var _helpers = __webpack_require__(28);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -38118,7 +38094,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       * @module Home
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       */
 
-var _helpers = __webpack_require__(30);
+var _helpers = __webpack_require__(28);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
